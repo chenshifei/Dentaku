@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DenCore",
+        "repositoryURL": "git@github.com:chenshifei/DenCore.git",
+        "state": {
+          "branch": null,
+          "revision": "6ab304c15e0cc935429cb7644bd517308974acf6",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
