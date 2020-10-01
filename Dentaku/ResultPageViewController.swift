@@ -20,7 +20,6 @@ class ResultPageViewController: UIPageViewController {
         
         setupContentViewControllers()
         dataSource = self
-        delegate = self
         
         let initialVC = contentVCs[contentVCs.count / 2]
         setViewControllers([initialVC], direction: .forward, animated: false, completion: nil)
