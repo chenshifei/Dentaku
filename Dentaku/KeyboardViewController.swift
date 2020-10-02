@@ -1,5 +1,5 @@
 //
-//  NumpadViewController.swift
+//  KeyboardViewController.swift
 //  Dentaku
 //
 //  Created by Shifei Chen on 2020-09-30.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NumpadViewController: UIViewController {
+class KeyboardViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
