@@ -9,14 +9,16 @@ import Foundation
 import DenCore
 
 protocol DisplayUnit {
-    var customizedButton: CustomizedKey? { get }
-    var customizedButtonEnabled: Bool { get set }
-    func customizedButtonPressed()
-    
     var allowedDefaultOperatorButtons: [OperatorKey] { get }
     
     func numericOutputDelivered(_ result: ProcessorResult)
     func equationEvaluated(result: ProcessorResult)
+}
+
+protocol ExtendedDisplayUnit: DisplayUnit {
+    var customizedButton: CustomizedKey? { get }
+    var customizedButtonEnabled: Bool { get set }
+    func customizedButtonPressed()
 }
 
 protocol KeyboardUnit {
@@ -28,21 +30,29 @@ protocol KeyboardUnit {
 
 class Calculator {
     internal var displayUnit: DisplayUnit?
-    internal var KeyboardUnit: KeyboardUnit?
+    internal var KeyboardUnit: KeyboardUnit? {
+        didSet {
+            if let displayUnit = displayUnit {
+                installDisplayUnit(displayUnit)
+            }
+        }
+    }
     fileprivate var processor = Processor()
     
     func installDisplayUnit(_ newDisplayUnit: DisplayUnit) {
         onFunctionButtonPressed(.clear)
         if let keyboard = KeyboardUnit {
-            if let customizedKey = newDisplayUnit.customizedButton {
-                keyboard.installCustomizedButton(customizedKey)
-            }
-            if newDisplayUnit.customizedButtonEnabled {
-                keyboard.enableCustomizedButton()
-            } else {
-                keyboard.disableCustomizedButton()
-            }
             keyboard.installDefaultOperatorButtons(newDisplayUnit.allowedDefaultOperatorButtons)
+            if let newDisplayUnit = newDisplayUnit as? ExtendedDisplayUnit {
+                if let customizedKey = newDisplayUnit.customizedButton {
+                    keyboard.installCustomizedButton(customizedKey)
+                }
+                if newDisplayUnit.customizedButtonEnabled {
+                    keyboard.enableCustomizedButton()
+                } else {
+                    keyboard.disableCustomizedButton()
+                }
+            }
         }
         displayUnit = newDisplayUnit
     }
@@ -74,7 +84,7 @@ class Calculator {
     }
     
     func onCustomizedButtonPressed() {
-        guard let display = displayUnit else { return }
+        guard let display = displayUnit as? ExtendedDisplayUnit else { return }
         if let _ = display.customizedButton, display.customizedButtonEnabled {
             display.customizedButtonPressed()
         }

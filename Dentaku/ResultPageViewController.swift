@@ -10,9 +10,15 @@ import UIKit
 class LCDScreenViewController: UIViewController {
     var index: Int = 0
     var isDisplayable = false
+    var calculator: Calculator?
 }
 
 class ResultPageViewController: UIPageViewController {
+    var calculator: Calculator? {
+        didSet {
+            contentVCs.forEach({ $0.calculator = calculator })
+        }
+    }
     var contentVCs = [LCDScreenViewController]()
     
     override func viewDidLoad() {
@@ -31,16 +37,19 @@ class ResultPageViewController: UIPageViewController {
             return
         }
         mapVC.index = 0
+        mapVC.calculator = calculator
         contentVCs.append(mapVC)
         guard let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController") as? CalculationResultViewController else {
             return
         }
         calculationVC.index = 1
+        calculationVC.calculator = calculator
         contentVCs.append(calculationVC)
         guard let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController") as? CurrencyResultViewController else {
             return
         }
         currencyVC.index = 2
+        currencyVC.calculator = calculator
         contentVCs.append(currencyVC)
     }
 }

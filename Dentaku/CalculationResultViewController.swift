@@ -6,13 +6,22 @@
 //
 
 import UIKit
+import DenCore
 
 class CalculationResultViewController: LCDScreenViewController {
+    
+    @IBOutlet weak var displayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isDisplayable = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        
+        calculator?.installDisplayUnit(self)
     }
     
 
@@ -26,4 +35,28 @@ class CalculationResultViewController: LCDScreenViewController {
     }
     */
 
+}
+
+extension CalculationResultViewController: DisplayUnit {
+    
+    var allowedDefaultOperatorButtons: [OperatorKey] {
+        [DefaultKeys.Operator.add,
+         DefaultKeys.Operator.substract,
+         DefaultKeys.Operator.multiply,
+         DefaultKeys.Operator.divide,
+         DefaultKeys.Operator.sin,
+         DefaultKeys.Operator.cos]
+    }
+    
+    func numericOutputDelivered(_ result: ProcessorResult) {
+        guard let value = result.0 else { return }
+        displayLabel.text = "\(value)"
+    }
+    
+    func equationEvaluated(result: ProcessorResult) {
+        guard let value = result.0 else { return }
+        displayLabel.text = "\(value)"
+    }
+    
+    
 }
