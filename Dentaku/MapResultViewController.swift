@@ -14,7 +14,7 @@ class MapResultViewController: PageViewContentViewController {
     var inputedNumbers: [Double] = [0, 0]
     
     @IBOutlet weak var displayLabel: UILabel!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var resultLabel: UILabel!
 }
 
 extension MapResultViewController: DisplayUnit {
@@ -69,10 +69,7 @@ extension MapResultViewController: DisplayUnit {
     }
     
     fileprivate func displayPlacemark(_ placemark: CLPlacemark) {
-        displayLabel.text = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
-        if let location = placemark.location {
-            mapView.setCenter(location.coordinate, animated: true)
-        }
+        resultLabel.text = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
     }
     
 }

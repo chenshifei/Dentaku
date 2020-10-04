@@ -395,32 +395,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="359"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0, 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-sj-80n">
-                                <rect key="frame" x="64" y="48" width="330" height="40.666666666666657"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beb-CQ-Lrf">
-                                <rect key="frame" x="64" y="108.66666666666667" width="330" height="225.33333333333331"/>
-                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Pvy-0U-UfM">
+                                <rect key="frame" x="20" y="20" width="374" height="314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0, 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-sj-80n">
+                                        <rect key="frame" x="319" y="0.0" width="55" height="40.666666666666664"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gd-5G-Dj0">
+                                        <rect key="frame" x="374" y="314" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GzY-jg-Up0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aTA-sj-80n" firstAttribute="leading" secondItem="GzY-jg-Up0" secondAttribute="leading" constant="20" id="7es-ZX-TQv"/>
-                            <constraint firstItem="aTA-sj-80n" firstAttribute="top" secondItem="RU7-a6-mvb" secondAttribute="top" constant="48" id="Dce-WG-vPf"/>
-                            <constraint firstItem="beb-CQ-Lrf" firstAttribute="top" secondItem="aTA-sj-80n" secondAttribute="bottom" constant="20" id="WTd-Cz-ewL"/>
-                            <constraint firstItem="GzY-jg-Up0" firstAttribute="trailing" secondItem="beb-CQ-Lrf" secondAttribute="trailing" constant="20" id="WwG-8K-de5"/>
-                            <constraint firstItem="GzY-jg-Up0" firstAttribute="trailing" secondItem="aTA-sj-80n" secondAttribute="trailing" constant="20" id="f5D-cD-w0o"/>
-                            <constraint firstItem="GzY-jg-Up0" firstAttribute="bottom" secondItem="beb-CQ-Lrf" secondAttribute="bottom" constant="20" id="rUe-RM-qqG"/>
-                            <constraint firstItem="beb-CQ-Lrf" firstAttribute="leading" secondItem="GzY-jg-Up0" secondAttribute="leading" constant="20" id="teN-Rd-ylw"/>
+                            <constraint firstItem="GzY-jg-Up0" firstAttribute="trailing" secondItem="Pvy-0U-UfM" secondAttribute="trailing" constant="20" id="8ZF-6N-6I2"/>
+                            <constraint firstItem="Pvy-0U-UfM" firstAttribute="leading" secondItem="RU7-a6-mvb" secondAttribute="leading" constant="20" id="Ymg-MK-Anx"/>
+                            <constraint firstItem="GzY-jg-Up0" firstAttribute="bottom" secondItem="Pvy-0U-UfM" secondAttribute="bottom" constant="20" id="cnh-Ku-l47"/>
+                            <constraint firstItem="Pvy-0U-UfM" firstAttribute="top" secondItem="GzY-jg-Up0" secondAttribute="top" constant="20" id="zhd-1L-jb3"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="359"/>
                     <connections>
                         <outlet property="displayLabel" destination="aTA-sj-80n" id="6hc-aX-PWR"/>
-                        <outlet property="mapView" destination="beb-CQ-Lrf" id="Ryc-VQ-bBm"/>
+                        <outlet property="resultLabel" destination="0Gd-5G-Dj0" id="Ni8-Hw-moT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osa-nq-XHS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -470,6 +475,10 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="414" height="359"/>
+                    <connections>
+                        <outlet property="btcLabel" destination="k3b-Bq-S6d" id="Bgk-m9-L7q"/>
+                        <outlet property="usdLabel" destination="pbu-nJ-abV" id="Bti-v8-2vL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXV-5B-B0Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
