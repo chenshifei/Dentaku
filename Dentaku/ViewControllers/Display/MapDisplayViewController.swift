@@ -9,7 +9,7 @@ import UIKit
 import DenCore
 import MapKit
 
-class MapResultViewController: PageViewContentViewController {
+class MapDisplayViewController: DisplayUnitViewController {
 
     var inputedNumbers: [Double] = [0, 0]
     
@@ -17,7 +17,9 @@ class MapResultViewController: PageViewContentViewController {
     @IBOutlet weak var resultLabel: UILabel!
 }
 
-extension MapResultViewController: DisplayUnit {
+// MARK: - DisplayUnit
+
+extension MapDisplayViewController: DisplayUnit {
     
     var enabledOperatorKeys: [OperatorKey] {
         [DefaultKeys.Operator.add, DefaultKeys.Operator.substract]

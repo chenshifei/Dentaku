@@ -8,21 +8,18 @@
 import UIKit
 import DenCore
 
-class CurrencyResultViewController: PageViewContentViewController {
+class CurrencyDisplayViewController: DisplayUnitViewController {
     
     static let defaultExchangeRate: Double = 10000
     
     var exchangeRate = defaultExchangeRate
-    @IBOutlet weak var btcLabel: UILabel!
-    @IBOutlet weak var usdLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var inputLabel: UILabel!
+    @IBOutlet weak var outputLabel: UILabel!
 }
 
-extension CurrencyResultViewController: DisplayUnit {
+// MARK: - DisplayUnit
+
+extension CurrencyDisplayViewController: DisplayUnit {
     
     var enabledOperatorKeys: [OperatorKey] {
         [DefaultKeys.Operator.add,
@@ -32,36 +29,36 @@ extension CurrencyResultViewController: DisplayUnit {
     }
     
     var customizedKey: CustomizedKey? {
-        CustomizedKey(name: "btc")
+        CustomizedKey(name: "rate?")
     }
     
     func numericOutputDelivered(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            btcLabel.text = "Error"
+            inputLabel.text = "Error"
             return
         }
-        btcLabel.text = String(number)
+        inputLabel.text = String(number)
     }
     
     func equationEvaluated(result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            btcLabel.text = "Error"
+            inputLabel.text = "Error"
             return
         }
         
-        btcLabel.text = String(number)
-        usdLabel.text = "\(number * exchangeRate)"
+        inputLabel.text = String(number)
+        outputLabel.text = "\(number * exchangeRate)"
     }
     
     func reset() {
-        btcLabel.text = "0.0"
-        usdLabel.text = "0.0"
+        inputLabel.text = "0.0"
+        outputLabel.text = "0.0"
     }
     
     func customizedKeyPressed() {
         DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
             if let _ = error {
-                self?.btcLabel.text = "Error"
+                self?.inputLabel.text = "Error"
                 return
             }
             if let rate = Double(result?.data.rates["USD"] ?? "") {

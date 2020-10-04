@@ -16,7 +16,10 @@ class KeyboardViewController: UIViewController {
     
     var installedOperatorKeys: [OperatorKey]? {
         didSet {
-            operatorKeyButtons.forEach({ $0.isEnabled = false })
+            operatorKeyButtons.forEach({
+                $0.isEnabled = false
+                $0.setTitle("", for: .normal)
+            })
             guard let installedKeys = installedOperatorKeys else { return }
             zip(installedKeys, operatorKeyButtons).forEach({ key, button in
                 button.setTitle(key.name, for: .normal)
@@ -94,7 +97,7 @@ class KeyboardViewController: UIViewController {
     }
 }
 
-// MARK: - KeyboardUnit Protocol
+// MARK: - KeyboardUnit
 
 extension KeyboardViewController: KeyboardUnit {
     
@@ -102,15 +105,17 @@ extension KeyboardViewController: KeyboardUnit {
         customizedKeyButton.isEnabled = enable
     }
     
-    func installCustomizedKey(_ customizedKeys: CustomizedKey) {
-        installedCustomizedKey = customizedKeys
-        customizedKeyButton.setTitle(customizedKeys.name, for: .normal)
+    func installCustomizedKey(_ customizedKey: CustomizedKey) {
+        installedCustomizedKey = customizedKey
+        customizedKeyButton.setTitle(customizedKey.name, for: .normal)
     }
     
-    func installOperatorKeys(_ defaultOperatorKeys: [OperatorKey]) {
-        installedOperatorKeys = defaultOperatorKeys
+    func installOperatorKeys(_ operatorKeys: [OperatorKey]) {
+        installedOperatorKeys = operatorKeys
     }
 }
+
+// MARK: - CircuitBoardPin
 
 extension KeyboardViewController: CircuitBoardPin {
     

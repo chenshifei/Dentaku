@@ -8,7 +8,10 @@
 import UIKit
 import DenCore
 
-class PageViewContentViewController: UIViewController {
+// MARK: - DisplayUnitViewController
+
+class DisplayUnitViewController: UIViewController {
+    
     var displayIndex: Int
     
     init?(coder: NSCoder, displayIndex: Int) {
@@ -22,12 +25,16 @@ class PageViewContentViewController: UIViewController {
     }
 }
 
-class ResultPageViewController: UIPageViewController {
+// MARK: - DisplayPageViewController
+
+class DisplayPageViewController: UIPageViewController {
     
+    // MARK: Properties
     weak var circuitBoard: CircuitBoard?
     
     var contentVCs = [UIViewController]()
     
+    //MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,18 +47,19 @@ class ResultPageViewController: UIPageViewController {
         circuitBoard?.displayUnit = initialVC as? DisplayUnit
     }
     
+    // MARK: Private functions
     fileprivate func setupContentViewControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController", creator: { coder in
-            MapResultViewController(coder: coder, displayIndex: 0)
+            MapDisplayViewController(coder: coder, displayIndex: 0)
         })
         contentVCs.append(mapVC)
         let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController", creator: { coder in
-            CalculationResultViewController(coder: coder, displayIndex: 1)
+            ArithmeticDisplayViewController(coder: coder, displayIndex: 1)
         })
         contentVCs.append(calculationVC)
         let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController", creator: { coder in
-            CurrencyResultViewController(coder: coder, displayIndex: 2)
+            CurrencyDisplayViewController(coder: coder, displayIndex: 2)
         })
         contentVCs.append(currencyVC)
     }
@@ -59,7 +67,7 @@ class ResultPageViewController: UIPageViewController {
 
 // MARK: - UIPageViewControllerDataSource
 
-extension ResultPageViewController: UIPageViewControllerDataSource {
+extension DisplayPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return nextViewController(for: viewController, direction: .reverse)
     }
@@ -69,7 +77,7 @@ extension ResultPageViewController: UIPageViewControllerDataSource {
     }
     
     fileprivate func nextViewController(for viewController: UIViewController, direction: UIPageViewController.NavigationDirection) -> UIViewController? {
-        guard let vc = viewController as? PageViewContentViewController else { return nil }
+        guard let vc = viewController as? DisplayUnitViewController else { return nil }
         let nextIndex = direction == .forward ? vc.displayIndex + 1 : vc.displayIndex - 1
         guard contentVCs.indices.contains(nextIndex) else {
             return nil
@@ -78,7 +86,9 @@ extension ResultPageViewController: UIPageViewControllerDataSource {
     }
 }
 
-extension ResultPageViewController: UIPageViewControllerDelegate {
+// MARK: - UIPageViewControllerDelegate
+
+extension DisplayPageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVC = pageViewController.viewControllers?.first as? DisplayUnit else {
             return
@@ -88,7 +98,9 @@ extension ResultPageViewController: UIPageViewControllerDelegate {
     }
 }
 
-extension ResultPageViewController: CircuitBoardPin {
+// MARK: - CircuitBoardPin
+
+extension DisplayPageViewController: CircuitBoardPin {
     func installOnCircuitBoard(_ circuitBoard: CircuitBoard) {
         self.circuitBoard = circuitBoard
     }

@@ -8,13 +8,15 @@
 import UIKit
 import DenCore
 
-class CalculationResultViewController: PageViewContentViewController {
+class ArithmeticDisplayViewController: DisplayUnitViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
 
 }
 
-extension CalculationResultViewController: DisplayUnit {
+// MARK: - DisplayUnit
+
+extension ArithmeticDisplayViewController: DisplayUnit {
     
     var customizedKey: CustomizedKey? {
         nil
@@ -51,5 +53,4 @@ extension CalculationResultViewController: DisplayUnit {
         guard let numericResult = result.0 else { return }
         displayLabel.text = "\(numericResult)"
     }
-    
 }
