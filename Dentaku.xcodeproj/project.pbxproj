@@ -21,7 +21,6 @@
 		00D931332524CCAF00BF1F05 /* CalculationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931322524CCAF00BF1F05 /* CalculationResultViewController.swift */; };
 		00D931382524CCDC00BF1F05 /* MapResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931372524CCDC00BF1F05 /* MapResultViewController.swift */; };
 		00D9313D2524CCF600BF1F05 /* CurrencyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9313C2524CCF600BF1F05 /* CurrencyResultViewController.swift */; };
-		00D9316F2529CC6D00BF1F05 /* CalculatorPropagatingSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9316E2529CC6D00BF1F05 /* CalculatorPropagatingSegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +60,6 @@
 		00D931322524CCAF00BF1F05 /* CalculationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationResultViewController.swift; sourceTree = "<group>"; };
 		00D931372524CCDC00BF1F05 /* MapResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResultViewController.swift; sourceTree = "<group>"; };
 		00D9313C2524CCF600BF1F05 /* CurrencyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResultViewController.swift; sourceTree = "<group>"; };
-		00D9316E2529CC6D00BF1F05 /* CalculatorPropagatingSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorPropagatingSegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +119,6 @@
 				00D931322524CCAF00BF1F05 /* CalculationResultViewController.swift */,
 				00D931372524CCDC00BF1F05 /* MapResultViewController.swift */,
 				00D9313C2524CCF600BF1F05 /* CurrencyResultViewController.swift */,
-				00D9316E2529CC6D00BF1F05 /* CalculatorPropagatingSegue.swift */,
 				007DE0EB2518D68C00B7D8EE /* Main.storyboard */,
 				007DE0EE2518D68E00B7D8EE /* Assets.xcassets */,
 				007DE0F02518D68E00B7D8EE /* LaunchScreen.storyboard */,
@@ -285,7 +282,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00D931382524CCDC00BF1F05 /* MapResultViewController.swift in Sources */,
-				00D9316F2529CC6D00BF1F05 /* CalculatorPropagatingSegue.swift in Sources */,
 				007DE0EA2518D68C00B7D8EE /* InitialViewController.swift in Sources */,
 				00D9312E2524CC7E00BF1F05 /* ResultPageViewController.swift in Sources */,
 				00D931262524CB4E00BF1F05 /* KeyboardViewController.swift in Sources */,
