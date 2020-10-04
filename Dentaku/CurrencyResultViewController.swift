@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import DenCore
 
-class CurrencyResultViewController: LCDScreenViewController {
+class CurrencyResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isDisplayable = true
         // Do any additional setup after loading the view.
     }
     

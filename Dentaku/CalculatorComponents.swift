@@ -5,32 +5,43 @@
 //  Created by Shifei Chen on 2020-10-01.
 //
 
-import Foundation
+import UIKit
 import DenCore
 
+protocol CircuitBoardSocket {
+    var circuitBoard: CircuitBoard { get }
+}
+
+protocol CircuitBoardPin {
+    func installOnCircuitBoard(_ circuitBoard: CircuitBoard)
+}
+
 protocol DisplayUnit {
-    var allowedDefaultOperatorButtons: [OperatorKey] { get }
+    var enabledOperatorKeys: [OperatorKey] { get }
     
     func numericOutputDelivered(_ result: ProcessorResult)
     func equationEvaluated(result: ProcessorResult)
-}
-
-protocol ExtendedDisplayUnit: DisplayUnit {
-    var customizedButton: CustomizedKey? { get }
-    var customizedButtonEnabled: Bool { get set }
-    func customizedButtonPressed()
+    
+    var customizedKey: CustomizedKey? { get }
+    var customizedKeyEnabled: Bool { get }
+    func customizedKeyPressed()
 }
 
 protocol KeyboardUnit {
-    func installCustomizedButton(_ customizedButton: CustomizedKey)
-    func enableCustomizedButton()
-    func disableCustomizedButton()
-    func installDefaultOperatorButtons(_ defaultOperatorButtons: [OperatorKey])
+    func installCustomizedKeys(_ customizedButton: CustomizedKey)
+    func customizedKey(enable: Bool)
+    func installOperatorKeys(_ defaultOperatorButtons: [OperatorKey])
 }
 
-class Calculator {
-    internal var displayUnit: DisplayUnit?
-    internal var keyboardUnit: KeyboardUnit? {
+class CircuitBoard {
+    internal var displayUnit: DisplayUnit? {
+        didSet {
+            if let displayUnit = displayUnit {
+                installDisplayUnit(displayUnit)
+            }
+        }
+    }
+    internal var keyboardUnit: KeyboardUnit! {
         didSet {
             if let displayUnit = displayUnit {
                 installDisplayUnit(displayUnit)
@@ -39,58 +50,45 @@ class Calculator {
     }
     fileprivate var processor = Processor()
     
-    func installDisplayUnit(_ newDisplayUnit: DisplayUnit) {
-        onFunctionButtonPressed(.clear)
+    fileprivate func installDisplayUnit(_ newDisplayUnit: DisplayUnit) {
+        onFunctionKeyPressed(.clear)
         if let keyboard = keyboardUnit {
-            keyboard.installDefaultOperatorButtons(newDisplayUnit.allowedDefaultOperatorButtons)
-            if let newDisplayUnit = newDisplayUnit as? ExtendedDisplayUnit {
-                if let customizedKey = newDisplayUnit.customizedButton {
-                    keyboard.installCustomizedButton(customizedKey)
-                }
-                if newDisplayUnit.customizedButtonEnabled {
-                    keyboard.enableCustomizedButton()
-                } else {
-                    keyboard.disableCustomizedButton()
-                }
+            keyboard.installOperatorKeys(newDisplayUnit.enabledOperatorKeys)
+            if let customizedKey = newDisplayUnit.customizedKey {
+                keyboard.installCustomizedKeys(customizedKey)
+                keyboard.customizedKey(enable: newDisplayUnit.customizedKeyEnabled)
             }
         }
-        displayUnit = newDisplayUnit
     }
     
-    func disableCustomizedButton() {
+    func customizedKey(enable: Bool) {
         if let keyboard = keyboardUnit {
-            keyboard.disableCustomizedButton()
+            keyboard.customizedKey(enable: enable)
         }
     }
     
-    func enableCustomizedButton() {
-        if let keyboard = keyboardUnit {
-            keyboard.enableCustomizedButton()
-        }
-    }
-    
-    func onNumpadButtonPressed(_ key: NumpadKey) {
+    func onNumpadKeyPressed(_ key: NumpadKey) {
         let result = processor.numpadKeyPressed(key: key)
         if let display = displayUnit {
             display.numericOutputDelivered(result)
         }
     }
     
-    func onOperatorButtonPressed(_ key: OperatorKey) {
+    func onOperatorKeyPressed(_ key: OperatorKey) {
         let result = processor.operatorKeyPressed(key: key)
         if let display = displayUnit {
             display.numericOutputDelivered(result)
         }
     }
     
-    func onCustomizedButtonPressed() {
-        guard let display = displayUnit as? ExtendedDisplayUnit else { return }
-        if let _ = display.customizedButton, display.customizedButtonEnabled {
-            display.customizedButtonPressed()
+    func onCustomizedKeyPressed() {
+        guard let display = displayUnit else { return }
+        if let _ = display.customizedKey, display.customizedKeyEnabled {
+            display.customizedKeyPressed()
         }
     }
     
-    func onFunctionButtonPressed(_ key: FunctionKey) {
+    func onFunctionKeyPressed(_ key: FunctionKey) {
         let result = processor.functionKeyPressed(key: key)
         if let display = displayUnit {
             display.equationEvaluated(result: result)

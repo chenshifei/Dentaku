@@ -9,7 +9,11 @@ import UIKit
 import DenCore
 
 class KeyboardViewController: UIViewController {
-    var calculator: Calculator?
+    
+    // MARK: - Properties
+    
+    weak var circuitBoard: CircuitBoard?
+    
     var installedOperatorKeys: [OperatorKey]? {
         didSet {
             operatorKeyButtons.forEach({ $0.isEnabled = false })
@@ -20,7 +24,9 @@ class KeyboardViewController: UIViewController {
             })
         }
     }
+    
     var installedCustomizedKey: CustomizedKey?
+    
     @IBOutlet weak var operatorKeyButton1: UIButton!
     @IBOutlet weak var operatorKeyButton2: UIButton!
     @IBOutlet weak var operatorKeyButton3: UIButton!
@@ -28,23 +34,26 @@ class KeyboardViewController: UIViewController {
     @IBOutlet weak var operatorKeyButton5: UIButton!
     @IBOutlet weak var operatorKeyButton6: UIButton!
     @IBOutlet weak var customizedKeyButton: UIButton!
+    
     var operatorKeyButtons: [UIButton] {
-        [operatorKeyButton1, operatorKeyButton2, operatorKeyButton3, operatorKeyButton4, operatorKeyButton5, operatorKeyButton6]
+        [operatorKeyButton1,
+         operatorKeyButton2,
+         operatorKeyButton3,
+         operatorKeyButton4,
+         operatorKeyButton5,
+         operatorKeyButton6]
     }
     
+    // MARK: - Lifecycles
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        circuitBoard?.keyboardUnit = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        calculator?.keyboardUnit = self
-    }
+    // MARK: - IBActions
     
     @IBAction func handleNumpadKeyDidClick(_ sender: UIButton) {
-        guard let calculator = calculator else { return }
         var key: NumpadKey
         switch sender.tag {
         case 0...9:
@@ -54,54 +63,59 @@ class KeyboardViewController: UIViewController {
         default:
             return
         }
-        calculator.onNumpadButtonPressed(key)
+        circuitBoard?.onNumpadKeyPressed(key)
     }
     
-    @IBAction func handleOperatorKeyDidClick(_ sender: UIButton) {
-        guard let calculator = calculator else { return }
-        guard let installedKey = installedOperatorKeys, installedKey.indices.contains(sender.tag)  else {
-            return
-        }
-        let key = installedKey[sender.tag]
-        calculator.onOperatorButtonPressed(key)
-    }
-    
-    @IBAction func handleCustomizedKeyDidClick(_ sender: UIButton) {
-        guard let calculator = calculator, let _ = installedCustomizedKey else {
-            return
-        }
-        calculator.onCustomizedButtonPressed()
+    @IBAction func handleOperatorKeyButtonDidClick(_ sender: UIButton) {
+        guard let installedKey = installedOperatorKeys,
+              installedKey.indices.contains(sender.tag)
+        else { return }
         
+        let key = installedKey[sender.tag]
+        circuitBoard?.onOperatorKeyPressed(key)
     }
     
-    @IBAction func handleFunctionKeyDidClick(_ sender: UIButton) {
-        guard let calculator = calculator else { return }
+    @IBAction func handleCustomizedKeyButtonDidClick(_ sender: UIButton) {
+        guard let _ = installedCustomizedKey else {
+            return
+        }
+        circuitBoard?.onCustomizedKeyPressed()
+    }
+    
+    @IBAction func handleFunctionKeyButtonDidClick(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            calculator.onFunctionButtonPressed(.clear)
+            circuitBoard?.onFunctionKeyPressed(.clear)
         case 1:
-            calculator.onFunctionButtonPressed(.equal)
+            circuitBoard?.onFunctionKeyPressed(.equal)
         default:
             return
         }
     }
 }
 
+// MARK: - KeyboardUnit Protocol
+
 extension KeyboardViewController: KeyboardUnit {
-    func installCustomizedButton(_ customizedButton: CustomizedKey) {
-        installedCustomizedKey = customizedButton
-        customizedKeyButton.setTitle(customizedButton.name, for: .normal)
+    
+    func customizedKey(enable: Bool) {
+        customizedKeyButton.isEnabled = enable
     }
     
-    func enableCustomizedButton() {
-        customizedKeyButton.isEnabled = true
+    func installCustomizedKeys(_ customizedKeys: CustomizedKey) {
+        installedCustomizedKey = customizedKeys
+        customizedKeyButton.setTitle(customizedKeys.name, for: .normal)
     }
     
-    func disableCustomizedButton() {
-        customizedKeyButton.isEnabled = false
+    func installOperatorKeys(_ defaultOperatorKeys: [OperatorKey]) {
+        installedOperatorKeys = defaultOperatorKeys
     }
+}
+
+extension KeyboardViewController: CircuitBoardPin {
     
-    func installDefaultOperatorButtons(_ defaultOperatorButtons: [OperatorKey]) {
-        installedOperatorKeys = defaultOperatorButtons
+    func installOnCircuitBoard(_ circuitBoard: CircuitBoard) {
+        self.circuitBoard = circuitBoard
     }
+
 }

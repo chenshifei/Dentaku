@@ -8,22 +8,9 @@
 import UIKit
 import DenCore
 
-class CalculationResultViewController: LCDScreenViewController {
+class CalculationResultViewController: PageViewContentViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        isDisplayable = true
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(animated)
-        
-        calculator?.installDisplayUnit(self)
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -39,7 +26,17 @@ class CalculationResultViewController: LCDScreenViewController {
 
 extension CalculationResultViewController: DisplayUnit {
     
-    var allowedDefaultOperatorButtons: [OperatorKey] {
+    var customizedKey: CustomizedKey? {
+        nil
+    }
+    
+    var customizedKeyEnabled: Bool {
+        false
+    }
+    
+    func customizedKeyPressed() {}
+    
+    var enabledOperatorKeys: [OperatorKey] {
         [DefaultKeys.Operator.add,
          DefaultKeys.Operator.substract,
          DefaultKeys.Operator.multiply,
@@ -49,14 +46,16 @@ extension CalculationResultViewController: DisplayUnit {
     }
     
     func numericOutputDelivered(_ result: ProcessorResult) {
-        guard let value = result.0 else { return }
-        displayLabel.text = "\(value)"
+        displayNumericResultOnScreen(result)
     }
     
     func equationEvaluated(result: ProcessorResult) {
-        guard let value = result.0 else { return }
-        displayLabel.text = "\(value)"
+        displayNumericResultOnScreen(result)
     }
     
+    fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
+        guard let numericResult = result.0 else { return }
+        displayLabel.text = "\(numericResult)"
+    }
     
 }

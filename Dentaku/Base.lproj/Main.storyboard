@@ -30,7 +30,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsK-99-x13"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsK-99-x13"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UX1-cV-irw">
@@ -40,7 +40,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sd1-sO-tif"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sd1-sO-tif"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fjv-Yt-yUS">
@@ -50,7 +50,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleCustomizedKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EWO-t6-g0l"/>
+                                                    <action selector="handleCustomizedKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EWO-t6-g0l"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBk-w7-fvh">
@@ -60,7 +60,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleFunctionKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="naj-br-rkr"/>
+                                                    <action selector="handleFunctionKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="naj-br-rkr"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -105,7 +105,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TSs-rf-ezW"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TSs-rf-ezW"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -150,7 +150,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hfF-XG-HWo"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hfF-XG-HWo"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -195,7 +195,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DHd-H4-RC5"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DHd-H4-RC5"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -230,7 +230,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleFunctionKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4E-nR-yKy"/>
+                                                    <action selector="handleFunctionKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4E-nR-yKy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JD-Th-dnJ">
@@ -240,7 +240,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="handleOperatorKeyDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m4U-RE-EQY"/>
+                                                    <action selector="handleOperatorKeyButtonDidClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m4U-RE-EQY"/>
                                                 </connections>
                                             </button>
                                         </subviews>

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import DenCore
 
-class MapResultViewController: LCDScreenViewController {
+class MapResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

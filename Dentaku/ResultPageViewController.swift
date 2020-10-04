@@ -7,19 +7,25 @@
 
 import UIKit
 
-class LCDScreenViewController: UIViewController {
-    var index: Int = 0
-    var isDisplayable = false
-    var calculator: Calculator?
+class PageViewContentViewController: UIViewController {
+    var displayIndex: Int
+    
+    init?(coder: NSCoder, displayIndex: Int) {
+        self.displayIndex = displayIndex
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.displayIndex = 0
+        super.init(coder: coder)
+    }
 }
 
 class ResultPageViewController: UIPageViewController {
-    var calculator: Calculator? {
-        didSet {
-            contentVCs.forEach({ $0.calculator = calculator })
-        }
-    }
-    var contentVCs = [LCDScreenViewController]()
+    
+    weak var circuitBoard: CircuitBoard?
+    
+    var contentVCs = [UIViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,28 +35,24 @@ class ResultPageViewController: UIPageViewController {
         
         let initialVC = contentVCs[contentVCs.count / 2]
         setViewControllers([initialVC], direction: .forward, animated: false, completion: nil)
+        circuitBoard?.displayUnit = initialVC as? DisplayUnit
     }
     
     fileprivate func setupContentViewControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController") as? MapResultViewController else {
-            return
-        }
-        mapVC.index = 0
-        mapVC.calculator = calculator
-        contentVCs.append(mapVC)
-        guard let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController") as? CalculationResultViewController else {
-            return
-        }
-        calculationVC.index = 1
-        calculationVC.calculator = calculator
+//        guard let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController") as? MapResultViewController else {
+//            return
+//        }
+//        mapVC.displayIndex = 0
+//        contentVCs.append(mapVC)
+        let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController", creator: { coder in
+            CalculationResultViewController(coder: coder, displayIndex: 0)
+        })
         contentVCs.append(calculationVC)
-        guard let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController") as? CurrencyResultViewController else {
-            return
-        }
-        currencyVC.index = 2
-        currencyVC.calculator = calculator
-        contentVCs.append(currencyVC)
+//        guard let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController") as? CurrencyResultViewController else {
+//            return
+//        }
+//        contentVCs.append(currencyVC)
     }
 }
 
@@ -66,13 +68,27 @@ extension ResultPageViewController: UIPageViewControllerDataSource {
     }
     
     fileprivate func nextViewController(for viewController: UIViewController, direction: UIPageViewController.NavigationDirection) -> UIViewController? {
-       guard let vc = viewController as? LCDScreenViewController else {
-            return nil
-        }
-        let nextIndex = direction == .forward ? vc.index + 1 : vc.index - 1
+        guard let vc = viewController as? PageViewContentViewController else { return nil }
+        let nextIndex = direction == .forward ? vc.displayIndex + 1 : vc.displayIndex - 1
         guard contentVCs.indices.contains(nextIndex) else {
             return nil
         }
         return contentVCs[nextIndex]
+    }
+}
+
+extension ResultPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let currentVC = pageViewController.viewControllers?.first as? DisplayUnit else {
+            return
+        }
+        
+        circuitBoard?.displayUnit = currentVC
+    }
+}
+
+extension ResultPageViewController: CircuitBoardPin {
+    func installOnCircuitBoard(_ circuitBoard: CircuitBoard) {
+        self.circuitBoard = circuitBoard
     }
 }
