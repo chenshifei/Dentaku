@@ -102,7 +102,7 @@ extension KeyboardViewController: KeyboardUnit {
         customizedKeyButton.isEnabled = enable
     }
     
-    func installCustomizedKeys(_ customizedKeys: CustomizedKey) {
+    func installCustomizedKey(_ customizedKeys: CustomizedKey) {
         installedCustomizedKey = customizedKeys
         customizedKeyButton.setTitle(customizedKeys.name, for: .normal)
     }

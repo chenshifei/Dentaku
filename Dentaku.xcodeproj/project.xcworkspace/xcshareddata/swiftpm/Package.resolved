@@ -5,9 +5,9 @@
         "package": "DenCore",
         "repositoryURL": "git@github.com:chenshifei/DenCore.git",
         "state": {
-          "branch": null,
-          "revision": "d2c09f75ff36816c88fcc542ae844a210935b07a",
-          "version": "0.4.0"
+          "branch": "main",
+          "revision": "64e11b9d36e4013d673f0f39781e908f0395e44d",
+          "version": null
         }
       }
     ]

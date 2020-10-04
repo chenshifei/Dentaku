@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DenCore
 
 class PageViewContentViewController: UIViewController {
     var displayIndex: Int
