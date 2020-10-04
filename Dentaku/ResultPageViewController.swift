@@ -33,6 +33,7 @@ class ResultPageViewController: UIPageViewController {
         
         setupContentViewControllers()
         dataSource = self
+        delegate = self
         
         let initialVC = contentVCs[contentVCs.count / 2]
         setViewControllers([initialVC], direction: .forward, animated: false, completion: nil)
@@ -41,13 +42,12 @@ class ResultPageViewController: UIPageViewController {
     
     fileprivate func setupContentViewControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController") as? MapResultViewController else {
-//            return
-//        }
-//        mapVC.displayIndex = 0
-//        contentVCs.append(mapVC)
+        let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController", creator: { coder in
+            MapResultViewController(coder: coder, displayIndex: 0)
+        })
+        contentVCs.append(mapVC)
         let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController", creator: { coder in
-            CalculationResultViewController(coder: coder, displayIndex: 0)
+            CalculationResultViewController(coder: coder, displayIndex: 1)
         })
         contentVCs.append(calculationVC)
 //        guard let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController") as? CurrencyResultViewController else {

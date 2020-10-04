@@ -329,8 +329,8 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="Us0-KY-L5p"/>
                                 <include reference="1de-Zh-VW5"/>
+                                <exclude reference="Us0-KY-L5p"/>
                                 <include reference="4cD-Lu-9cW"/>
                                 <exclude reference="IbC-hb-rVt"/>
                                 <exclude reference="WG9-ab-xtt"/>
@@ -418,6 +418,10 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="359"/>
+                    <connections>
+                        <outlet property="displayLabel" destination="aTA-sj-80n" id="6hc-aX-PWR"/>
+                        <outlet property="mapView" destination="beb-CQ-Lrf" id="Ryc-VQ-bBm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osa-nq-XHS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
