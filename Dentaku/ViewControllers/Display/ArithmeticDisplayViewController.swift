@@ -10,6 +10,8 @@ import DenCore
 
 class ArithmeticDisplayViewController: DisplayUnitViewController {
     
+    static let defaultDisplayText = "0.0"
+    
     @IBOutlet weak var displayLabel: UILabel!
 
 }
@@ -46,11 +48,14 @@ extension ArithmeticDisplayViewController: DisplayUnit {
     }
     
     func reset() {
-        displayLabel.text = "0.0"
+        displayLabel.text = ArithmeticDisplayViewController.defaultDisplayText
     }
     
     fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
-        guard let numericResult = result.0 else { return }
-        displayLabel.text = "\(numericResult)"
+        guard let number = result.0, result.1 == nil else {
+            displayLabel.text = "Error"
+            return
+        }
+        displayLabel.text = "\(number)"
     }
 }

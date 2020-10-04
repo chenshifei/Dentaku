@@ -10,11 +10,27 @@ import DenCore
 import MapKit
 
 class MapDisplayViewController: DisplayUnitViewController {
+    
+    static let defaultDisplayText = "0.0"
+    static let defaultResultText = "0, 0"
 
     var inputedNumbers: [Double] = [0, 0]
     
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var resultLabel: UILabel!
+    
+    // MARK: Private functions
+    
+    fileprivate func displayInputNumbers() {
+        let latitude = inputedNumbers.count > 0 ? inputedNumbers[0] : 0
+        let longitude = inputedNumbers.count > 1 ? inputedNumbers[1] : 0
+        resultLabel.text = "\(latitude), \(longitude)"
+    }
+
+    fileprivate func displayPlacemark(_ placemark: CLPlacemark) {
+        resultLabel.text = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
+    }
+    
 }
 
 // MARK: - DisplayUnit
@@ -22,7 +38,8 @@ class MapDisplayViewController: DisplayUnitViewController {
 extension MapDisplayViewController: DisplayUnit {
     
     var enabledOperatorKeys: [OperatorKey] {
-        [DefaultKeys.Operator.add, DefaultKeys.Operator.substract]
+        [DefaultKeys.Operator.add,
+         DefaultKeys.Operator.substract]
     }
     
     var customizedKey: CustomizedKey? {
@@ -31,7 +48,7 @@ extension MapDisplayViewController: DisplayUnit {
     
     func numericOutputDelivered(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            displayLabel.text = "Error"
+            resultLabel.text = "Error"
             return
         }
         displayLabel.text = String(number)
@@ -39,7 +56,7 @@ extension MapDisplayViewController: DisplayUnit {
     
     func equationEvaluated(result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            displayLabel.text = "Error"
+            resultLabel.text = "Error"
             return
         }
         
@@ -48,35 +65,30 @@ extension MapDisplayViewController: DisplayUnit {
         }
         inputedNumbers.append(number)
         
-        let latitude = inputedNumbers.count > 0 ? inputedNumbers[0] : 0
-        let longitude = inputedNumbers.count > 1 ? inputedNumbers[1] : 0
-        displayLabel.text = "\(latitude), \(longitude)"
+        displayInputNumbers()
     }
     
     func reset() {
-        displayLabel.text = "0, 0"
-        resultLabel.text = ""
+        displayLabel.text = MapDisplayViewController.defaultDisplayText
+        resultLabel.text = MapDisplayViewController.defaultResultText
+        inputedNumbers.removeAll()
     }
     
     func customizedKeyPressed() {
         guard inputedNumbers.count == 2 else {
-            displayLabel.text = "Insufficient arguments"
+            resultLabel.text = "Insufficient arguments"
             return
         }
         
         let location = CLLocation(latitude: inputedNumbers.first ?? 0, longitude: inputedNumbers.last ?? 0)
         AntennaDish().parseLocation(location) { [weak self] (result, error) in
             if let _ = error {
-                self?.displayLabel.text = "Error"
+                self?.resultLabel.text = "Error"
             } else {
                 guard let place = result?.first else { return }
                 self?.displayPlacemark(place)
             }
         }
-    }
-    
-    fileprivate func displayPlacemark(_ placemark: CLPlacemark) {
-        resultLabel.text = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
     }
     
 }

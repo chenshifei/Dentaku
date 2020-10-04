@@ -10,11 +10,22 @@ import DenCore
 
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
+    static let defaultDisplayText = "0.0"
     static let defaultExchangeRate: Double = 10000
+    static let updateDateTextPrefix = "Exchange rate updated at: "
     
     var exchangeRate = defaultExchangeRate
     @IBOutlet weak var inputLabel: UILabel!
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var updateTimeLabel: UILabel!
+    
+    fileprivate func formatUpdateTimeText() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        let timeString = formatter.string(from: Date())
+        updateTimeLabel.text = CurrencyDisplayViewController.updateDateTextPrefix + "\(timeString)"
+    }
 }
 
 // MARK: - DisplayUnit
@@ -34,7 +45,7 @@ extension CurrencyDisplayViewController: DisplayUnit {
     
     func numericOutputDelivered(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            inputLabel.text = "Error"
+            outputLabel.text = "Error"
             return
         }
         inputLabel.text = String(number)
@@ -42,7 +53,7 @@ extension CurrencyDisplayViewController: DisplayUnit {
     
     func equationEvaluated(result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            inputLabel.text = "Error"
+            outputLabel.text = "Error"
             return
         }
         
@@ -51,18 +62,19 @@ extension CurrencyDisplayViewController: DisplayUnit {
     }
     
     func reset() {
-        inputLabel.text = "0.0"
-        outputLabel.text = "0.0"
+        inputLabel.text = CurrencyDisplayViewController.defaultDisplayText
+        outputLabel.text = CurrencyDisplayViewController.defaultDisplayText
     }
     
     func customizedKeyPressed() {
         DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
             if let _ = error {
-                self?.inputLabel.text = "Error"
+                self?.outputLabel.text = "Error"
                 return
             }
             if let rate = Double(result?.data.rates["USD"] ?? "") {
                 self?.exchangeRate = rate
+                self?.formatUpdateTimeText()
             }
         }
     }
