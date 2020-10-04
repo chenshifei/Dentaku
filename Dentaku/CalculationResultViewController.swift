@@ -43,6 +43,10 @@ extension CalculationResultViewController: DisplayUnit {
         displayNumericResultOnScreen(result)
     }
     
+    func reset() {
+        displayLabel.text = "0.0"
+    }
+    
     fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
         guard let numericResult = result.0 else { return }
         displayLabel.text = "\(numericResult)"

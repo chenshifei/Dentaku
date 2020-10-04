@@ -51,6 +51,11 @@ extension MapResultViewController: DisplayUnit {
         displayLabel.text = "\(latitude), \(longitude)"
     }
     
+    func reset() {
+        displayLabel.text = "0, 0"
+        resultLabel.text = ""
+    }
+    
     func customizedKeyPressed() {
         guard inputedNumbers.count == 2 else {
             displayLabel.text = "Insufficient arguments"
