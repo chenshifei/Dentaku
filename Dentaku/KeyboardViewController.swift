@@ -40,7 +40,7 @@ class KeyboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        calculator?.KeyboardUnit = self
+        calculator?.keyboardUnit = self
     }
     
     @IBAction func handleNumpadKeyDidClick(_ sender: UIButton) {

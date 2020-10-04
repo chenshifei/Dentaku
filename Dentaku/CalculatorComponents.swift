@@ -30,7 +30,7 @@ protocol KeyboardUnit {
 
 class Calculator {
     internal var displayUnit: DisplayUnit?
-    internal var KeyboardUnit: KeyboardUnit? {
+    internal var keyboardUnit: KeyboardUnit? {
         didSet {
             if let displayUnit = displayUnit {
                 installDisplayUnit(displayUnit)
@@ -41,7 +41,7 @@ class Calculator {
     
     func installDisplayUnit(_ newDisplayUnit: DisplayUnit) {
         onFunctionButtonPressed(.clear)
-        if let keyboard = KeyboardUnit {
+        if let keyboard = keyboardUnit {
             keyboard.installDefaultOperatorButtons(newDisplayUnit.allowedDefaultOperatorButtons)
             if let newDisplayUnit = newDisplayUnit as? ExtendedDisplayUnit {
                 if let customizedKey = newDisplayUnit.customizedButton {
@@ -58,13 +58,13 @@ class Calculator {
     }
     
     func disableCustomizedButton() {
-        if let keyboard = KeyboardUnit {
+        if let keyboard = keyboardUnit {
             keyboard.disableCustomizedButton()
         }
     }
     
     func enableCustomizedButton() {
-        if let keyboard = KeyboardUnit {
+        if let keyboard = keyboardUnit {
             keyboard.enableCustomizedButton()
         }
     }
