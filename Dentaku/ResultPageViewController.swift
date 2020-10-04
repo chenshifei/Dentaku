@@ -50,10 +50,10 @@ class ResultPageViewController: UIPageViewController {
             CalculationResultViewController(coder: coder, displayIndex: 1)
         })
         contentVCs.append(calculationVC)
-//        guard let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController") as? CurrencyResultViewController else {
-//            return
-//        }
-//        contentVCs.append(currencyVC)
+        let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController", creator: { coder in
+            CurrencyResultViewController(coder: coder, displayIndex: 2)
+        })
+        contentVCs.append(currencyVC)
     }
 }
 
