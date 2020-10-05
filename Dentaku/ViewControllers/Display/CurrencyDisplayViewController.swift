@@ -11,6 +11,7 @@ import FirebaseCrashlytics
 
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
+    // MARK: Properties
     static let defaultDisplayText = "0.0"
     static let defaultExchangeRate: Double = 10600
     static let updateDateTextPrefix = "Exchange rate updated at: "
@@ -20,12 +21,37 @@ class CurrencyDisplayViewController: DisplayUnitViewController {
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var updateTimeLabel: UILabel!
     
+    // MARK: Lifecycles
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchCurrency()
+    }
+    
+    // MARK: Private functions
+    
     fileprivate func formatUpdateTimeText() {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         let timeString = formatter.string(from: Date())
         updateTimeLabel.text = CurrencyDisplayViewController.updateDateTextPrefix + "\(timeString)"
+    }
+    
+    fileprivate func fetchCurrency() {
+        DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
+            if let error = error {
+                self?.recordError(error)
+                self?.showError("Currency update failed, may not be correct", level: .warning)
+                return
+            }
+            if let rate = Double(result?.data.rates["USD"] ?? "") {
+                self?.exchangeRate = rate
+                self?.formatUpdateTimeText()
+            } else {
+                self?.showError(.data)
+            }
+        }
     }
 }
 
@@ -68,19 +94,7 @@ extension CurrencyDisplayViewController: DisplayUnit {
     }
     
     func customizedKeyPressed() {
-        DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
-            if let error = error {
-                self?.recordError(error)
-                self?.showError("Currency update failed, may not be correct", level: .warning)
-                return
-            }
-            if let rate = Double(result?.data.rates["USD"] ?? "") {
-                self?.exchangeRate = rate
-                self?.formatUpdateTimeText()
-            } else {
-                self?.showError(.data)
-            }
-        }
+        fetchCurrency()
     }
 }
 
