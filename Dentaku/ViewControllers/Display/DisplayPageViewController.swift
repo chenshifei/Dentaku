@@ -30,9 +30,9 @@ class DisplayUnitViewController: UIViewController {
 class DisplayPageViewController: UIPageViewController {
     
     // MARK: Properties
-    weak var circuitBoard: CircuitBoard?
+    fileprivate weak var circuitBoard: CircuitBoard?
     
-    var contentVCs = [UIViewController]()
+    fileprivate var contentVCs = [UIViewController]()
     
     //MARK: Lifecycles
     override func viewDidLoad() {

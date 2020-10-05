@@ -20,7 +20,8 @@ enum AssetsColor: String {
 }
 
 enum Theme: String {
-    static let userDefaultThemeKey = "theme"
+    fileprivate static let userDefaultThemeKey = "theme"
+    
     case main, alternative
     
     static func storeTheme(_ theme:Theme) {

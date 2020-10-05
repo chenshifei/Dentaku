@@ -11,9 +11,9 @@ import FirebaseCrashlytics
 
 class ArithmeticDisplayViewController: DisplayUnitViewController {
     
-    static let defaultDisplayText = "0.0"
+    fileprivate static let defaultDisplayText = "0.0"
     
-    @IBOutlet weak var displayLabel: UILabel!
+    @IBOutlet fileprivate weak var displayLabel: UILabel!
 
 }
 

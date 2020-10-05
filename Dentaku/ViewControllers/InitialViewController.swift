@@ -10,7 +10,7 @@ import DenCore
 
 class InitialViewController: UIViewController {
     
-    let circuitBoard = CircuitBoard()
+    fileprivate let circuitBoard = CircuitBoard()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? CircuitBoardPin {

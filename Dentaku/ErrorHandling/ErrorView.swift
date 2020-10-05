@@ -13,10 +13,10 @@ enum ErrorLevel {
 
 class ErrorView: UIView {
     
-    static let viewTag = 458
-    static let defaultHeight: CGFloat = 30.0
-    static let animationDuration = 0.5
-    static let displayDuration = 3.0
+    fileprivate static let viewTag = 458
+    fileprivate static let defaultHeight: CGFloat = 30.0
+    fileprivate static let animationDuration = 0.5
+    fileprivate static let displayDuration = 3.0
 
     fileprivate var textLabel: UILabel
     

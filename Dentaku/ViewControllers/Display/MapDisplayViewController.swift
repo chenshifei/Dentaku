@@ -12,13 +12,13 @@ import FirebaseCrashlytics
 
 class MapDisplayViewController: DisplayUnitViewController {
     
-    static let defaultDisplayText = "0.0"
-    static let defaultResultText = "0, 0"
+    fileprivate static let defaultDisplayText = "0.0"
+    fileprivate static let defaultResultText = "0,0"
 
-    var inputedNumbers: [Double] = [0, 0]
+    fileprivate var inputedNumbers: [Double] = [0, 0]
     
-    @IBOutlet weak var displayLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet fileprivate weak var displayLabel: UILabel!
+    @IBOutlet fileprivate weak var resultLabel: UILabel!
     
     // MARK: Private functions
     
@@ -30,6 +30,27 @@ class MapDisplayViewController: DisplayUnitViewController {
 
     fileprivate func displayPlacemark(_ placemark: CLPlacemark) {
         resultLabel.text = "\(placemark.name ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "")"
+    }
+    
+    fileprivate func fetchAddress() {
+        guard inputedNumbers.count == 2 else {
+            showError(.input)
+            return
+        }
+        
+        let location = CLLocation(latitude: inputedNumbers.first ?? 0, longitude: inputedNumbers.last ?? 0)
+        AntennaDish().parseLocation(location) { [weak self] (result, error) in
+            if let error = error {
+                self?.recordError(error)
+                self?.showError(.network)
+            } else {
+                guard let place = result?.first else {
+                    self?.showError(.data)
+                    return
+                }
+                self?.displayPlacemark(place)
+            }
+        }
     }
     
 }
@@ -77,24 +98,7 @@ extension MapDisplayViewController: DisplayUnit {
     }
     
     func customizedKeyPressed() {
-        guard inputedNumbers.count == 2 else {
-            showError(.input)
-            return
-        }
-        
-        let location = CLLocation(latitude: inputedNumbers.first ?? 0, longitude: inputedNumbers.last ?? 0)
-        AntennaDish().parseLocation(location) { [weak self] (result, error) in
-            if let error = error {
-                self?.recordError(error)
-                self?.showError(.network)
-            } else {
-                guard let place = result?.first else {
-                    self?.showError(.data)
-                    return
-                }
-                self?.displayPlacemark(place)
-            }
-        }
+        fetchAddress()
     }
 }
 

@@ -14,9 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Firebase configuration
         FirebaseApp.configure()
         
+        // Fetch default theme from user settings, if nil, use main theme instead
         if Theme.fetchStoredTheme() == nil {
             Theme.storeTheme(.main)
         }

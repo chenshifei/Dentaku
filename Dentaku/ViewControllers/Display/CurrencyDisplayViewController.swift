@@ -12,14 +12,14 @@ import FirebaseCrashlytics
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
     // MARK: Properties
-    static let defaultDisplayText = "0.0"
-    static let defaultExchangeRate: Double = 10600
-    static let updateDateTextPrefix = "Exchange rate updated at: "
+    fileprivate static let defaultDisplayText = "0.0"
+    fileprivate static let defaultExchangeRate: Double = 10600
+    fileprivate static let updateDateTextPrefix = "Exchange rate updated at: "
     
-    var exchangeRate = defaultExchangeRate
-    @IBOutlet weak var inputLabel: UILabel!
-    @IBOutlet weak var outputLabel: UILabel!
-    @IBOutlet weak var updateTimeLabel: UILabel!
+    fileprivate var exchangeRate = defaultExchangeRate
+    @IBOutlet fileprivate weak var inputLabel: UILabel!
+    @IBOutlet fileprivate weak var outputLabel: UILabel!
+    @IBOutlet fileprivate weak var updateTimeLabel: UILabel!
     
     // MARK: Lifecycles
     

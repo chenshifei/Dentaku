@@ -12,9 +12,9 @@ class KeyboardViewController: UIViewController {
     
     // MARK: - Properties
     
-    weak var circuitBoard: CircuitBoard?
+    fileprivate weak var circuitBoard: CircuitBoard?
     
-    var installedOperatorKeys: [OperatorKey]? {
+    fileprivate var installedOperatorKeys: [OperatorKey]? {
         didSet {
             operatorKeyButtons.forEach({
                 $0.isEnabled = false
@@ -28,16 +28,16 @@ class KeyboardViewController: UIViewController {
         }
     }
     
-    var installedCustomizedKey: CustomizedKey?
+    fileprivate var installedCustomizedKey: CustomizedKey?
     
-    @IBOutlet weak var operatorKeyButton1: UIButton!
-    @IBOutlet weak var operatorKeyButton2: UIButton!
-    @IBOutlet weak var operatorKeyButton3: UIButton!
-    @IBOutlet weak var operatorKeyButton4: UIButton!
-    @IBOutlet weak var operatorKeyButton5: UIButton!
-    @IBOutlet weak var operatorKeyButton6: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton1: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton2: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton3: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton4: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton5: UIButton!
+    @IBOutlet fileprivate weak var operatorKeyButton6: UIButton!
     
-    var operatorKeyButtons: [UIButton] {
+    fileprivate var operatorKeyButtons: [UIButton] {
         [operatorKeyButton1,
          operatorKeyButton2,
          operatorKeyButton3,
@@ -46,19 +46,19 @@ class KeyboardViewController: UIViewController {
          operatorKeyButton6]
     }
     
-    @IBOutlet weak var numpadKeyButton0: UIButton!
-    @IBOutlet weak var numpadKeyButton1: UIButton!
-    @IBOutlet weak var numpadKeyButton2: UIButton!
-    @IBOutlet weak var numpadKeyButton3: UIButton!
-    @IBOutlet weak var numpadKeyButton4: UIButton!
-    @IBOutlet weak var numpadKeyButton5: UIButton!
-    @IBOutlet weak var numpadKeyButton6: UIButton!
-    @IBOutlet weak var numpadKeyButton7: UIButton!
-    @IBOutlet weak var numpadKeyButton8: UIButton!
-    @IBOutlet weak var numpadKeyButton9: UIButton!
-    @IBOutlet weak var numpadKeyButton10: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton0: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton1: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton2: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton3: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton4: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton5: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton6: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton7: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton8: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton9: UIButton!
+    @IBOutlet fileprivate weak var numpadKeyButton10: UIButton!
     
-    var numpadKeyButtons: [UIButton] {
+    fileprivate var numpadKeyButtons: [UIButton] {
         [numpadKeyButton0,
          numpadKeyButton1,
          numpadKeyButton2,
@@ -72,9 +72,9 @@ class KeyboardViewController: UIViewController {
          numpadKeyButton10]
     }
     
-    @IBOutlet weak var clearKeyButton: UIButton!
-    @IBOutlet weak var equalKeyButton: UIButton!
-    @IBOutlet weak var customizedKeyButton: UIButton!
+    @IBOutlet fileprivate weak var clearKeyButton: UIButton!
+    @IBOutlet fileprivate weak var equalKeyButton: UIButton!
+    @IBOutlet fileprivate weak var customizedKeyButton: UIButton!
     
     // MARK: - Lifecycles
     
@@ -87,7 +87,7 @@ class KeyboardViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func handleNumpadKeyDidClick(_ sender: UIButton) {
+    @IBAction fileprivate func handleNumpadKeyDidClick(_ sender: UIButton) {
         var key: NumpadKey
         switch sender.tag {
         case 0...9:
@@ -100,7 +100,7 @@ class KeyboardViewController: UIViewController {
         circuitBoard?.onNumpadKeyPressed(key)
     }
     
-    @IBAction func handleOperatorKeyButtonDidClick(_ sender: UIButton) {
+    @IBAction fileprivate func handleOperatorKeyButtonDidClick(_ sender: UIButton) {
         guard let installedKey = installedOperatorKeys,
               installedKey.indices.contains(sender.tag)
         else { return }
@@ -109,14 +109,14 @@ class KeyboardViewController: UIViewController {
         circuitBoard?.onOperatorKeyPressed(key)
     }
     
-    @IBAction func handleCustomizedKeyButtonDidClick(_ sender: UIButton) {
+    @IBAction fileprivate func handleCustomizedKeyButtonDidClick(_ sender: UIButton) {
         guard let _ = installedCustomizedKey else {
             return
         }
         circuitBoard?.onCustomizedKeyPressed()
     }
     
-    @IBAction func handleFunctionKeyButtonDidClick(_ sender: UIButton) {
+    @IBAction fileprivate func handleFunctionKeyButtonDidClick(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             circuitBoard?.onFunctionKeyPressed(.clear)
