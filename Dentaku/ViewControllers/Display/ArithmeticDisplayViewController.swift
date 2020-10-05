@@ -53,13 +53,16 @@ extension ArithmeticDisplayViewController: DisplayUnit {
     }
     
     fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
-        guard let number = result.0, result.1 == nil else {
-            displayLabel.text = "Error"
-            if let error = result.1 {
-                Crashlytics.crashlytics().record(error: error)
-            }
-            return
+        if let error = result.1 {
+            recordError(error)
+            showError(.input)
+        } else if let number = result.0 {
+            displayLabel.text = "\(number)"
+        } else {
+            showError(.input)
         }
-        displayLabel.text = "\(number)"
     }
 }
+
+// MARK: - ErrorHandleable
+extension ArithmeticDisplayViewController: ErrorHandleable {}

@@ -15,6 +15,8 @@ enum AssetsColor: String {
     case secondaryBtnBackground
     case functionBtnBackground
     case keyboardBackground
+    case error
+    case warning
 }
 
 enum Theme: String {

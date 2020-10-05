@@ -49,7 +49,7 @@ extension MapDisplayViewController: DisplayUnit {
     
     func numericOutputDelivered(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            resultLabel.text = "Error"
+            showError(.input)
             return
         }
         displayLabel.text = String(number)
@@ -57,9 +57,10 @@ extension MapDisplayViewController: DisplayUnit {
     
     func equationEvaluated(result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            resultLabel.text = "Error"
+            showError(.input)
             return
         }
+        displayLabel.text = String(number)
         
         if inputedNumbers.count > 1 {
             inputedNumbers.removeFirst()
@@ -77,24 +78,25 @@ extension MapDisplayViewController: DisplayUnit {
     
     func customizedKeyPressed() {
         guard inputedNumbers.count == 2 else {
-            resultLabel.text = "Insufficient arguments"
+            showError(.input)
             return
         }
         
         let location = CLLocation(latitude: inputedNumbers.first ?? 0, longitude: inputedNumbers.last ?? 0)
         AntennaDish().parseLocation(location) { [weak self] (result, error) in
             if let error = error {
-                self?.resultLabel.text = "Error"
-                if let clerr = error as? CLError, clerr.code == .network {
-                    self?.resultLabel.text = "No Network"
-                } else {
-                    Crashlytics.crashlytics().record(error: error)
-                }
+                self?.recordError(error)
+                self?.showError(.network)
             } else {
-                guard let place = result?.first else { return }
+                guard let place = result?.first else {
+                    self?.showError(.data)
+                    return
+                }
                 self?.displayPlacemark(place)
             }
         }
     }
-    
 }
+
+// MARK: - ErrorHandleable
+extension MapDisplayViewController: ErrorHandleable {}

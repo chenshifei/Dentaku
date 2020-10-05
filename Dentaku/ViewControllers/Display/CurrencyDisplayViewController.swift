@@ -12,7 +12,7 @@ import FirebaseCrashlytics
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
     static let defaultDisplayText = "0.0"
-    static let defaultExchangeRate: Double = 10000
+    static let defaultExchangeRate: Double = 10600
     static let updateDateTextPrefix = "Exchange rate updated at: "
     
     var exchangeRate = defaultExchangeRate
@@ -46,7 +46,7 @@ extension CurrencyDisplayViewController: DisplayUnit {
     
     func numericOutputDelivered(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            outputLabel.text = "Error"
+            self.showError(.input)
             return
         }
         inputLabel.text = String(number)
@@ -54,7 +54,7 @@ extension CurrencyDisplayViewController: DisplayUnit {
     
     func equationEvaluated(result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
-            outputLabel.text = "Error"
+            self.showError(.input)
             return
         }
         
@@ -70,14 +70,19 @@ extension CurrencyDisplayViewController: DisplayUnit {
     func customizedKeyPressed() {
         DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
             if let error = error {
-                self?.outputLabel.text = "Error"
-                Crashlytics.crashlytics().record(error: error)
+                self?.recordError(error)
+                self?.showError("Currency update failed, may not be correct", level: .warning)
                 return
             }
             if let rate = Double(result?.data.rates["USD"] ?? "") {
-               self?.exchangeRate = rate
-               self?.formatUpdateTimeText()
+                self?.exchangeRate = rate
+                self?.formatUpdateTimeText()
+            } else {
+                self?.showError(.data)
             }
         }
     }
 }
+
+// MARK: - ErrorHandleable
+extension CurrencyDisplayViewController: ErrorHandleable {}
