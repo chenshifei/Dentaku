@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002B2CC6252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
+		002B2CC7252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
+		002B2CC8252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
+		002B2CD1252AA62F00283759 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 002B2CD0252AA62F00283759 /* FirebaseAnalytics */; };
+		002B2CD3252AA62F00283759 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 002B2CD2252AA62F00283759 /* FirebaseCrashlytics */; };
 		007DE0E62518D68C00B7D8EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DE0E52518D68C00B7D8EE /* AppDelegate.swift */; };
 		007DE0E82518D68C00B7D8EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DE0E72518D68C00B7D8EE /* SceneDelegate.swift */; };
 		007DE0EA2518D68C00B7D8EE /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DE0E92518D68C00B7D8EE /* InitialViewController.swift */; };
@@ -41,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002B2CC5252AA26300283759 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		007DE0E22518D68C00B7D8EE /* Dentaku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dentaku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		007DE0E52518D68C00B7D8EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		007DE0E72518D68C00B7D8EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002B2CD3252AA62F00283759 /* FirebaseCrashlytics in Frameworks */,
+				002B2CD1252AA62F00283759 /* FirebaseAnalytics in Frameworks */,
 				007DE11A2518DA1E00B7D8EE /* DenCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +126,7 @@
 				007DE0EE2518D68E00B7D8EE /* Assets.xcassets */,
 				007DE0F02518D68E00B7D8EE /* LaunchScreen.storyboard */,
 				007DE0F32518D68E00B7D8EE /* Info.plist */,
+				002B2CC5252AA26300283759 /* GoogleService-Info.plist */,
 			);
 			path = Dentaku;
 			sourceTree = "<group>";
@@ -179,6 +188,7 @@
 				007DE0DE2518D68C00B7D8EE /* Sources */,
 				007DE0DF2518D68C00B7D8EE /* Frameworks */,
 				007DE0E02518D68C00B7D8EE /* Resources */,
+				002B2CDA252AA77500283759 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -187,6 +197,8 @@
 			name = Dentaku;
 			packageProductDependencies = (
 				007DE1192518DA1E00B7D8EE /* DenCore */,
+				002B2CD0252AA62F00283759 /* FirebaseAnalytics */,
+				002B2CD2252AA62F00283759 /* FirebaseCrashlytics */,
 			);
 			productName = Dentaku;
 			productReference = 007DE0E22518D68C00B7D8EE /* Dentaku.app */;
@@ -261,6 +273,7 @@
 			mainGroup = 007DE0D92518D68C00B7D8EE;
 			packageReferences = (
 				007DE1182518DA1E00B7D8EE /* XCRemoteSwiftPackageReference "DenCore" */,
+				002B2CCF252AA62F00283759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 007DE0E32518D68C00B7D8EE /* Products */;
 			projectDirPath = "";
@@ -279,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007DE0F22518D68E00B7D8EE /* LaunchScreen.storyboard in Resources */,
+				002B2CC6252AA26300283759 /* GoogleService-Info.plist in Resources */,
 				007DE0EF2518D68E00B7D8EE /* Assets.xcassets in Resources */,
 				007DE0ED2518D68C00B7D8EE /* Main.storyboard in Resources */,
 			);
@@ -288,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002B2CC7252AA26300283759 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,10 +310,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002B2CC8252AA26300283759 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		002B2CDA252AA77500283759 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		007DE0DE2518D68C00B7D8EE /* Sources */ = {
@@ -489,11 +525,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Dentaku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shifei.Dentaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -512,6 +550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shifei.Dentaku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -641,6 +680,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		002B2CCF252AA62F00283759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = "6.34-spm-beta";
+				kind = branch;
+			};
+		};
 		007DE1182518DA1E00B7D8EE /* XCRemoteSwiftPackageReference "DenCore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:chenshifei/DenCore.git";
@@ -652,6 +699,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		002B2CD0252AA62F00283759 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 002B2CCF252AA62F00283759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		002B2CD2252AA62F00283759 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 002B2CCF252AA62F00283759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
 		007DE1192518DA1E00B7D8EE /* DenCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 007DE1182518DA1E00B7D8EE /* XCRemoteSwiftPackageReference "DenCore" */;
