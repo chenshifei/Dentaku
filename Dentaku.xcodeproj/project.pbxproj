@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002B2CC6252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
-		002B2CC7252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
-		002B2CC8252AA26300283759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 002B2CC5252AA26300283759 /* GoogleService-Info.plist */; };
 		002B2CD1252AA62F00283759 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 002B2CD0252AA62F00283759 /* FirebaseAnalytics */; };
 		002B2CD3252AA62F00283759 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 002B2CD2252AA62F00283759 /* FirebaseCrashlytics */; };
 		002B2CE5252AB90100283759 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002B2CE4252AB90100283759 /* SettingsViewController.swift */; };
@@ -25,6 +22,7 @@
 		007DE11A2518DA1E00B7D8EE /* DenCore in Frameworks */ = {isa = PBXBuildFile; productRef = 007DE1192518DA1E00B7D8EE /* DenCore */; };
 		00C2DACD252B1CA20082B240 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2DACC252B1CA20082B240 /* ErrorView.swift */; };
 		00C2DADE252B46AF0082B240 /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2DADD252B46AF0082B240 /* ErrorHandleable.swift */; };
+		00C2DAE5252B4E070082B240 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C2DAE4252B4E070082B240 /* GoogleService-Info.plist */; };
 		00D931262524CB4E00BF1F05 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931252524CB4E00BF1F05 /* KeyboardViewController.swift */; };
 		00D9312E2524CC7E00BF1F05 /* DisplayPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9312D2524CC7E00BF1F05 /* DisplayPageViewController.swift */; };
 		00D931332524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */; };
@@ -50,7 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		002B2CC5252AA26300283759 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		002B2CE4252AB90100283759 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		002B2CEA252AB9AC00283759 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		007DE0E22518D68C00B7D8EE /* Dentaku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dentaku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +66,7 @@
 		007DE1092518D68E00B7D8EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C2DACC252B1CA20082B240 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		00C2DADD252B46AF0082B240 /* ErrorHandleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandleable.swift; sourceTree = "<group>"; };
+		00C2DAE4252B4E070082B240 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00D931252524CB4E00BF1F05 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		00D9312D2524CC7E00BF1F05 /* DisplayPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayPageViewController.swift; sourceTree = "<group>"; };
 		00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticDisplayViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +142,7 @@
 				007DE0EE2518D68E00B7D8EE /* Assets.xcassets */,
 				007DE0F02518D68E00B7D8EE /* LaunchScreen.storyboard */,
 				007DE0F32518D68E00B7D8EE /* Info.plist */,
-				002B2CC5252AA26300283759 /* GoogleService-Info.plist */,
+				00C2DAE4252B4E070082B240 /* GoogleService-Info.plist */,
 			);
 			path = Dentaku;
 			sourceTree = "<group>";
@@ -328,7 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007DE0F22518D68E00B7D8EE /* LaunchScreen.storyboard in Resources */,
-				002B2CC6252AA26300283759 /* GoogleService-Info.plist in Resources */,
+				00C2DAE5252B4E070082B240 /* GoogleService-Info.plist in Resources */,
 				007DE0EF2518D68E00B7D8EE /* Assets.xcassets in Resources */,
 				007DE0ED2518D68C00B7D8EE /* Main.storyboard in Resources */,
 			);
@@ -338,7 +336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002B2CC7252AA26300283759 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +343,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002B2CC8252AA26300283759 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
