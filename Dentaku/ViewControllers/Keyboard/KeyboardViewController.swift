@@ -89,7 +89,6 @@ class KeyboardViewController: UIViewController {
         switch sender.tag {
         case 0:
             circuitBoard?.onFunctionKeyPressed(.clear)
-            fatalError()
         case 1:
             circuitBoard?.onFunctionKeyPressed(.equal)
         default:

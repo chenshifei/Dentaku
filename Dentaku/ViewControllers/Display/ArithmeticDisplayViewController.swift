@@ -7,6 +7,7 @@
 
 import UIKit
 import DenCore
+import FirebaseCrashlytics
 
 class ArithmeticDisplayViewController: DisplayUnitViewController {
     
@@ -54,6 +55,9 @@ extension ArithmeticDisplayViewController: DisplayUnit {
     fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
         guard let number = result.0, result.1 == nil else {
             displayLabel.text = "Error"
+            if let error = result.1 {
+                Crashlytics.crashlytics().record(error: error)
+            }
             return
         }
         displayLabel.text = "\(number)"

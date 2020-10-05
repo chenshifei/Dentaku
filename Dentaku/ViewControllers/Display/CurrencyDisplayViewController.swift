@@ -7,6 +7,7 @@
 
 import UIKit
 import DenCore
+import FirebaseCrashlytics
 
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
@@ -68,13 +69,14 @@ extension CurrencyDisplayViewController: DisplayUnit {
     
     func customizedKeyPressed() {
         DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
-            if let _ = error {
+            if let error = error {
                 self?.outputLabel.text = "Error"
+                Crashlytics.crashlytics().record(error: error)
                 return
             }
             if let rate = Double(result?.data.rates["USD"] ?? "") {
-                self?.exchangeRate = rate
-                self?.formatUpdateTimeText()
+               self?.exchangeRate = rate
+               self?.formatUpdateTimeText()
             }
         }
     }

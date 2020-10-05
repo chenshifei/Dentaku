@@ -7,7 +7,8 @@
 
 import UIKit
 import DenCore
-import MapKit
+import CoreLocation
+import FirebaseCrashlytics
 
 class MapDisplayViewController: DisplayUnitViewController {
     
@@ -82,8 +83,13 @@ extension MapDisplayViewController: DisplayUnit {
         
         let location = CLLocation(latitude: inputedNumbers.first ?? 0, longitude: inputedNumbers.last ?? 0)
         AntennaDish().parseLocation(location) { [weak self] (result, error) in
-            if let _ = error {
+            if let error = error {
                 self?.resultLabel.text = "Error"
+                if let clerr = error as? CLError, clerr.code == .network {
+                    self?.resultLabel.text = "No Network"
+                } else {
+                    Crashlytics.crashlytics().record(error: error)
+                }
             } else {
                 guard let place = result?.first else { return }
                 self?.displayPlacemark(place)
