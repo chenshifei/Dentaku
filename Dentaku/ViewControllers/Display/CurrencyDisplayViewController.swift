@@ -7,7 +7,7 @@
 
 import UIKit
 import DenCore
-import FirebaseCrashlytics
+import Reachability
 
 class CurrencyDisplayViewController: DisplayUnitViewController {
     
@@ -17,15 +17,27 @@ class CurrencyDisplayViewController: DisplayUnitViewController {
     fileprivate static let updateDateTextPrefix = "Exchange rate updated at: "
     
     fileprivate var exchangeRate = defaultExchangeRate
+    fileprivate var reachability: Reachability?
+    
     @IBOutlet fileprivate weak var inputLabel: UILabel!
     @IBOutlet fileprivate weak var outputLabel: UILabel!
     @IBOutlet fileprivate weak var updateTimeLabel: UILabel!
     
     // MARK: Lifecycles
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCurrency()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        circuitBoard?.displayUnit = self
+        setupReachabilityListener()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        reachability?.stopNotifier()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: Private functions
@@ -42,7 +54,7 @@ class CurrencyDisplayViewController: DisplayUnitViewController {
         DefaultEndpoints.Currency.fetchExchangeRates { [weak self] (result, error) in
             if let error = error {
                 self?.recordError(error)
-                self?.showError("Currency update failed, may not be correct", level: .warning)
+                self?.showError("Currency update failed, may be outdated", level: .warning)
                 return
             }
             if let rate = Double(result?.data.rates["USD"] ?? "") {
@@ -52,6 +64,25 @@ class CurrencyDisplayViewController: DisplayUnitViewController {
                 self?.showError(.data)
             }
         }
+    }
+    
+    fileprivate func setupReachabilityListener() {
+        // Reachability is not realiable on simulators
+        #if !targetEnvironment(simulator)
+        do {
+            reachability = try Reachability()
+            reachability?.whenReachable = { [weak self] _ in
+                self?.circuitBoard?.customizedKey(enable: true)
+            }
+            reachability?.whenReachable = { [weak self] _ in
+                self?.circuitBoard?.customizedKey(enable: false)
+                self?.showError("No network, currency rate may be outdated", level: .warning)
+            }
+            try reachability?.startNotifier()
+        } catch {
+            recordError(error)
+        }
+        #endif
     }
 }
 

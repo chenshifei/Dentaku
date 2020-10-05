@@ -12,10 +12,13 @@ import DenCore
 
 class DisplayUnitViewController: UIViewController {
     
+    weak var circuitBoard: CircuitBoard?
+    
     var displayIndex: Int
     
-    init?(coder: NSCoder, displayIndex: Int) {
+    init?(coder: NSCoder, displayIndex: Int, circuitBoard: CircuitBoard) {
         self.displayIndex = displayIndex
+        self.circuitBoard = circuitBoard
         super.init(coder: coder)
     }
     
@@ -34,32 +37,32 @@ class DisplayPageViewController: UIPageViewController {
     
     fileprivate var contentVCs = [UIViewController]()
     
-    //MARK: Lifecycles
+    // MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupContentViewControllers()
         dataSource = self
-        delegate = self
         
         let initialVC = contentVCs[contentVCs.count / 2]
         setViewControllers([initialVC], direction: .forward, animated: false, completion: nil)
-        circuitBoard?.displayUnit = initialVC as? DisplayUnit
     }
     
     // MARK: Private functions
     fileprivate func setupContentViewControllers() {
+        guard let circuitBoard = circuitBoard else { return }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mapVC = storyboard.instantiateViewController(identifier: "MapResultViewController", creator: { coder in
-            MapDisplayViewController(coder: coder, displayIndex: 0)
+            MapDisplayViewController(coder: coder, displayIndex: 0, circuitBoard: circuitBoard)
         })
         contentVCs.append(mapVC)
         let calculationVC = storyboard.instantiateViewController(identifier: "CalculationResultViewController", creator: { coder in
-            ArithmeticDisplayViewController(coder: coder, displayIndex: 1)
+            ArithmeticDisplayViewController(coder: coder, displayIndex: 1, circuitBoard: circuitBoard)
         })
         contentVCs.append(calculationVC)
         let currencyVC = storyboard.instantiateViewController(identifier: "CurrencyResultViewController", creator: { coder in
-            CurrencyDisplayViewController(coder: coder, displayIndex: 2)
+            CurrencyDisplayViewController(coder: coder, displayIndex: 2, circuitBoard: circuitBoard)
         })
         contentVCs.append(currencyVC)
     }
@@ -86,22 +89,11 @@ extension DisplayPageViewController: UIPageViewControllerDataSource {
     }
 }
 
-// MARK: - UIPageViewControllerDelegate
-
-extension DisplayPageViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let currentVC = pageViewController.viewControllers?.first as? DisplayUnit else {
-            return
-        }
-        
-        circuitBoard?.displayUnit = currentVC
-    }
-}
-
 // MARK: - CircuitBoardPin
 
 extension DisplayPageViewController: CircuitBoardPin {
     func installOnCircuitBoard(_ circuitBoard: CircuitBoard) {
+        // Workaround for storyboard dependency injection
         self.circuitBoard = circuitBoard
     }
 }

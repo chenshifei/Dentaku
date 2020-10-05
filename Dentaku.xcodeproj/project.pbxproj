@@ -23,6 +23,7 @@
 		00C2DACD252B1CA20082B240 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2DACC252B1CA20082B240 /* ErrorView.swift */; };
 		00C2DADE252B46AF0082B240 /* ErrorHandleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C2DADD252B46AF0082B240 /* ErrorHandleable.swift */; };
 		00C2DAE5252B4E070082B240 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C2DAE4252B4E070082B240 /* GoogleService-Info.plist */; };
+		00C2DAEB252B54460082B240 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 00C2DAEA252B54460082B240 /* Reachability */; };
 		00D931262524CB4E00BF1F05 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931252524CB4E00BF1F05 /* KeyboardViewController.swift */; };
 		00D9312E2524CC7E00BF1F05 /* DisplayPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9312D2524CC7E00BF1F05 /* DisplayPageViewController.swift */; };
 		00D931332524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */; };
@@ -80,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				002B2CD3252AA62F00283759 /* FirebaseCrashlytics in Frameworks */,
+				00C2DAEB252B54460082B240 /* Reachability in Frameworks */,
 				002B2CD1252AA62F00283759 /* FirebaseAnalytics in Frameworks */,
 				007DE11A2518DA1E00B7D8EE /* DenCore in Frameworks */,
 			);
@@ -233,6 +235,7 @@
 				007DE1192518DA1E00B7D8EE /* DenCore */,
 				002B2CD0252AA62F00283759 /* FirebaseAnalytics */,
 				002B2CD2252AA62F00283759 /* FirebaseCrashlytics */,
+				00C2DAEA252B54460082B240 /* Reachability */,
 			);
 			productName = Dentaku;
 			productReference = 007DE0E22518D68C00B7D8EE /* Dentaku.app */;
@@ -308,6 +311,7 @@
 			packageReferences = (
 				007DE1182518DA1E00B7D8EE /* XCRemoteSwiftPackageReference "DenCore" */,
 				002B2CCF252AA62F00283759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				00C2DAE9252B54460082B240 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 			);
 			productRefGroup = 007DE0E32518D68C00B7D8EE /* Products */;
 			projectDirPath = "";
@@ -732,6 +736,14 @@
 				minimumVersion = 0.6.0;
 			};
 		};
+		00C2DAE9252B54460082B240 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:ashleymills/Reachability.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 007DE1182518DA1E00B7D8EE /* XCRemoteSwiftPackageReference "DenCore" */;
 			productName = DenCore;
+		};
+		00C2DAEA252B54460082B240 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00C2DAE9252B54460082B240 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

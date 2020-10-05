@@ -11,10 +11,16 @@ import FirebaseCrashlytics
 
 class ArithmeticDisplayViewController: DisplayUnitViewController {
     
+    // MARK: Properties
     fileprivate static let defaultDisplayText = "0.0"
     
     @IBOutlet fileprivate weak var displayLabel: UILabel!
-
+    
+    // MARK: Lifecycles
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        circuitBoard?.displayUnit = self
+    }
 }
 
 // MARK: - DisplayUnit

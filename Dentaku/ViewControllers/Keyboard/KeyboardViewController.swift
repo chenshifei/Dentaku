@@ -134,7 +134,7 @@ class KeyboardViewController: UIViewController {
         numpadKeyButtons.forEach({ $0.backgroundColor = UIColor.appThemeColor(.btnBackground) })
         clearKeyButton.backgroundColor = UIColor.appThemeColor(.functionBtnBackground)
         equalKeyButton.backgroundColor = UIColor.appThemeColor(.functionBtnBackground)
-        customizedKeyButton.backgroundColor = UIColor.appThemeColor(.secondaryBtnBackground)
+        customizedKeyButton.backgroundColor = customizedKeyButton.isEnabled ? UIColor.appThemeColor(.secondaryBtnBackground) : UIColor.appThemeColor(.secondaryBtnBackgroundDisabled)
     }
 }
 
@@ -144,6 +144,11 @@ extension KeyboardViewController: KeyboardUnit {
     
     func customizedKey(enable: Bool) {
         customizedKeyButton.isEnabled = enable
+        if enable {
+            customizedKeyButton.backgroundColor = UIColor.appThemeColor(.secondaryBtnBackground)
+        } else {
+            customizedKeyButton.backgroundColor = UIColor.appThemeColor(.secondaryBtnBackgroundDisabled)
+        }
     }
     
     func installCustomizedKey(_ customizedKey: CustomizedKey) {

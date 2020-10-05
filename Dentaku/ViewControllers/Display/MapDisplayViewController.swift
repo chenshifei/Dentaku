@@ -8,20 +8,33 @@
 import UIKit
 import DenCore
 import CoreLocation
-import FirebaseCrashlytics
+import Reachability
 
 class MapDisplayViewController: DisplayUnitViewController {
     
+    // MARK: Properties
     fileprivate static let defaultDisplayText = "0.0"
     fileprivate static let defaultResultText = "0,0"
 
     fileprivate var inputedNumbers: [Double] = [0, 0]
+    fileprivate var reachability: Reachability?
     
     @IBOutlet fileprivate weak var displayLabel: UILabel!
     @IBOutlet fileprivate weak var resultLabel: UILabel!
     
-    // MARK: Private functions
+    // MARK: Lifecycles
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        circuitBoard?.displayUnit = self
+        setupReachabilityListener()
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        reachability?.stopNotifier()
+        super.viewWillDisappear(animated)
+    }
+    
+    // MARK: Private functions
     fileprivate func displayInputNumbers() {
         let latitude = inputedNumbers.count > 0 ? inputedNumbers[0] : 0
         let longitude = inputedNumbers.count > 1 ? inputedNumbers[1] : 0
@@ -51,6 +64,25 @@ class MapDisplayViewController: DisplayUnitViewController {
                 self?.displayPlacemark(place)
             }
         }
+    }
+    
+    fileprivate func setupReachabilityListener() {
+        // Reachability is not realiable on simulators
+        #if !targetEnvironment(simulator)
+        do {
+            reachability = try Reachability()
+            reachability?.whenReachable = { [weak self] _ in
+                self?.circuitBoard?.customizedKey(enable: true)
+            }
+            reachability?.whenReachable = { [weak self] _ in
+                self?.circuitBoard?.customizedKey(enable: false)
+                self?.showError("No network hence can't parse location", level: .warning)
+            }
+            try reachability?.startNotifier()
+        } catch {
+            recordError(error)
+        }
+        #endif
     }
     
 }

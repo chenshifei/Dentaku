@@ -81,6 +81,15 @@
           "revision": "c5cdb6bdc2d3db8ef81e3bc71d55d31baf638837",
           "version": "1.2.10"
         }
+      },
+      {
+        "package": "Reachability",
+        "repositoryURL": "git@github.com:ashleymills/Reachability.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "c01bbdf2d633cf049ae1ed1a68a2020a8bda32e2",
+          "version": "5.1.0"
+        }
       }
     ]
   },

@@ -13,6 +13,7 @@ enum AssetsColor: String {
     case background
     case btnBackground
     case secondaryBtnBackground
+    case secondaryBtnBackgroundDisabled
     case functionBtnBackground
     case keyboardBackground
     case error
