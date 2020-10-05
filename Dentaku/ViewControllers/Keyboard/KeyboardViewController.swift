@@ -36,7 +36,6 @@ class KeyboardViewController: UIViewController {
     @IBOutlet weak var operatorKeyButton4: UIButton!
     @IBOutlet weak var operatorKeyButton5: UIButton!
     @IBOutlet weak var operatorKeyButton6: UIButton!
-    @IBOutlet weak var customizedKeyButton: UIButton!
     
     var operatorKeyButtons: [UIButton] {
         [operatorKeyButton1,
@@ -47,11 +46,43 @@ class KeyboardViewController: UIViewController {
          operatorKeyButton6]
     }
     
+    @IBOutlet weak var numpadKeyButton0: UIButton!
+    @IBOutlet weak var numpadKeyButton1: UIButton!
+    @IBOutlet weak var numpadKeyButton2: UIButton!
+    @IBOutlet weak var numpadKeyButton3: UIButton!
+    @IBOutlet weak var numpadKeyButton4: UIButton!
+    @IBOutlet weak var numpadKeyButton5: UIButton!
+    @IBOutlet weak var numpadKeyButton6: UIButton!
+    @IBOutlet weak var numpadKeyButton7: UIButton!
+    @IBOutlet weak var numpadKeyButton8: UIButton!
+    @IBOutlet weak var numpadKeyButton9: UIButton!
+    @IBOutlet weak var numpadKeyButton10: UIButton!
+    
+    var numpadKeyButtons: [UIButton] {
+        [numpadKeyButton0,
+         numpadKeyButton1,
+         numpadKeyButton2,
+         numpadKeyButton3,
+         numpadKeyButton4,
+         numpadKeyButton5,
+         numpadKeyButton6,
+         numpadKeyButton7,
+         numpadKeyButton8,
+         numpadKeyButton9,
+         numpadKeyButton10]
+    }
+    
+    @IBOutlet weak var clearKeyButton: UIButton!
+    @IBOutlet weak var equalKeyButton: UIButton!
+    @IBOutlet weak var customizedKeyButton: UIButton!
+    
     // MARK: - Lifecycles
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         circuitBoard?.keyboardUnit = self
+        
+        applyTheme()
     }
     
     // MARK: - IBActions
@@ -94,6 +125,16 @@ class KeyboardViewController: UIViewController {
         default:
             return
         }
+    }
+    
+    // MARK: Private functions
+    
+    fileprivate func applyTheme() {
+        operatorKeyButtons.forEach{ $0.backgroundColor = UIColor.appThemeColor(.secondaryBtnBackground) }
+        numpadKeyButtons.forEach({ $0.backgroundColor = UIColor.appThemeColor(.btnBackground) })
+        clearKeyButton.backgroundColor = UIColor.appThemeColor(.functionBtnBackground)
+        equalKeyButton.backgroundColor = UIColor.appThemeColor(.functionBtnBackground)
+        customizedKeyButton.backgroundColor = UIColor.appThemeColor(.secondaryBtnBackground)
     }
 }
 

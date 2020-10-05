@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="te3-BW-Woh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8pi-o4-zGe">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -249,7 +250,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="keyboardBackground"/>
                         <constraints>
                             <constraint firstItem="YIU-ZZ-Tj4" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="Ghr-pr-deq"/>
                             <constraint firstItem="YIU-ZZ-Tj4" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="b47-lx-pk0"/>
@@ -259,7 +260,20 @@
                     </view>
                     <size key="freeformSize" width="414" height="448"/>
                     <connections>
-                        <outlet property="customizedKeyButton" destination="Fjv-Yt-yUS" id="0kh-Iq-MNC"/>
+                        <outlet property="clearKeyButton" destination="NBk-w7-fvh" id="zg2-6Y-Wgk"/>
+                        <outlet property="customizedKeyButton" destination="Fjv-Yt-yUS" id="u8V-FY-bjT"/>
+                        <outlet property="equalKeyButton" destination="sSX-Mm-TLe" id="OCq-Dj-05r"/>
+                        <outlet property="numpadKeyButton0" destination="p17-nP-Uxc" id="IWG-D1-890"/>
+                        <outlet property="numpadKeyButton1" destination="QeP-9S-ZuE" id="39T-xK-otL"/>
+                        <outlet property="numpadKeyButton10" destination="FVr-Gb-nJL" id="nm5-HE-Eqo"/>
+                        <outlet property="numpadKeyButton2" destination="Quy-wi-bYY" id="dgj-HY-YpH"/>
+                        <outlet property="numpadKeyButton3" destination="93o-3K-PrJ" id="6AF-jK-wif"/>
+                        <outlet property="numpadKeyButton4" destination="Cwg-ZO-cUW" id="hGn-Bu-fth"/>
+                        <outlet property="numpadKeyButton5" destination="1nI-vp-k0P" id="BnQ-LG-1uS"/>
+                        <outlet property="numpadKeyButton6" destination="Q7H-dh-Rf7" id="VHw-TB-BRe"/>
+                        <outlet property="numpadKeyButton7" destination="ZRU-ob-e19" id="Ima-W8-WSh"/>
+                        <outlet property="numpadKeyButton8" destination="GtX-eS-1Iz" id="vd6-OF-lRh"/>
+                        <outlet property="numpadKeyButton9" destination="Rrs-PX-zho" id="X6W-jm-kiK"/>
                         <outlet property="operatorKeyButton1" destination="4JD-Th-dnJ" id="j69-db-U9s"/>
                         <outlet property="operatorKeyButton2" destination="4gV-OQ-fS6" id="1xW-io-tik"/>
                         <outlet property="operatorKeyButton3" destination="cOG-DD-K8u" id="noF-B4-M02"/>
@@ -270,9 +284,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1529" y="384"/>
+            <point key="canvasLocation" x="-587.20000000000005" y="383.49753694581284"/>
         </scene>
-        <!--Initial View Controller-->
+        <!--Calculator-->
         <scene sceneID="MaI-A1-oW9">
             <objects>
                 <viewController id="te3-BW-Woh" customClass="InitialViewController" customModule="Dentaku" customModuleProvider="target" sceneMemberID="viewController">
@@ -340,10 +354,61 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Calculator" id="Jco-bb-dsU">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="YF6-x3-B9U">
+                            <connections>
+                                <segue destination="M0E-kf-v2t" kind="show" id="EHg-tb-4t8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5L-ze-2aS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2310.5911330049262" y="154.40000000000001"/>
+            <point key="canvasLocation" x="-1368.8" y="153.69458128078819"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="gtP-TZ-g3g">
+            <objects>
+                <viewController id="M0E-kf-v2t" customClass="SettingsViewController" customModule="Dentaku" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hQ5-Ot-lRV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3db-SZ-Lmm">
+                                <rect key="frame" x="20" y="108" width="335" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Alternative Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKD-In-2X5">
+                                        <rect key="frame" x="0.0" y="5.3333333333333286" width="278" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IeW-bk-av7">
+                                        <rect key="frame" x="286" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" name="AccentColor"/>
+                                        <connections>
+                                            <action selector="handleSwitchValueDidChange:" destination="M0E-kf-v2t" eventType="valueChanged" id="VfT-tm-XCO"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0gl-7H-val"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3db-SZ-Lmm" firstAttribute="top" secondItem="0gl-7H-val" secondAttribute="top" constant="20" id="Ovf-xC-nrJ"/>
+                            <constraint firstItem="3db-SZ-Lmm" firstAttribute="leading" secondItem="0gl-7H-val" secondAttribute="leading" constant="20" id="Oye-o2-nKv"/>
+                            <constraint firstItem="0gl-7H-val" firstAttribute="trailing" secondItem="3db-SZ-Lmm" secondAttribute="trailing" constant="20" id="RM6-T8-LPe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UxA-5X-JFb"/>
+                    <connections>
+                        <outlet property="themeSwitch" destination="IeW-bk-av7" id="Lcd-lS-GNF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IGN-xU-KCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-586" y="-564"/>
         </scene>
         <!--Display Page View Controller-->
         <scene sceneID="6r5-UP-2ki">
@@ -353,7 +418,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYt-IZ-dfi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1586" y="-545"/>
+            <point key="canvasLocation" x="-587" y="-29"/>
         </scene>
         <!--Arithmetic Display View Controller-->
         <scene sceneID="Dhf-9s-e04">
@@ -363,10 +428,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="359"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewp-lq-1ng">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ewp-lq-1ng">
                                 <rect key="frame" x="20" y="264" width="374" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -385,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQl-gs-8GS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-606" y="-716"/>
+            <point key="canvasLocation" x="275" y="-258"/>
         </scene>
         <!--Map Display View Controller-->
         <scene sceneID="11M-C5-7jF">
@@ -404,13 +468,12 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input latitude + &quot;=&quot; and longitude + &quot;=&quot;, then press &quot;map&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wo5-UM-ES0">
                                                 <rect key="frame" x="0.0" y="0.0" width="303.66666666666669" height="13.333333333333334"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="textColor" name="noteText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0, 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-sj-80n">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0, 0" textAlignment="right" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-sj-80n">
                                                 <rect key="frame" x="248.66666666666669" y="21.333333333333325" width="55" height="40.666666666666657"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -441,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osa-nq-XHS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-666" y="140"/>
+            <point key="canvasLocation" x="275.19999999999999" y="139.28571428571428"/>
         </scene>
         <!--Currency Display View Controller-->
         <scene sceneID="4bY-D1-8xa">
@@ -460,28 +523,26 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press &quot;rate?' to update the currency rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mb-lm-SpA">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="13.333333333333334"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="textColor" name="noteText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange rate updated at: never" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMe-LV-YO7">
                                                 <rect key="frame" x="0.0" y="21.333333333333329" width="374" height="13.333333333333336"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="textColor" name="noteText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0zc-cN-mM0">
                                                 <rect key="frame" x="0.0" y="42.666666666666671" width="374" height="40.666666666666671"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3b-Bq-S6d">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3b-Bq-S6d">
                                                         <rect key="frame" x="0.0" y="0.0" width="305" height="40.666666666666664"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yv-TP-yQJ">
                                                         <rect key="frame" x="345" y="0.0" width="29" height="40.666666666666664"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -491,22 +552,19 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="=" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zS3-jm-mz3">
                                         <rect key="frame" x="0.0" y="133" width="374" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="A2d-9X-XGc">
                                         <rect key="frame" x="0.0" y="200.33333333333331" width="374" height="40.666666666666657"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbu-nJ-abV">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbu-nJ-abV">
                                                 <rect key="frame" x="0.0" y="0.0" width="303" height="40.666666666666664"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qy-k7-kwE">
                                                 <rect key="frame" x="343" y="0.0" width="31" height="40.666666666666664"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -533,13 +591,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXV-5B-B0Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-667" y="1118"/>
+            <point key="canvasLocation" x="275" y="487"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qNH-YL-Ffc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8pi-o4-zGe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YwK-3M-0zC">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="te3-BW-Woh" kind="relationship" relationship="rootViewController" id="gSj-QY-9kK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BZO-lr-hTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2311.1999999999998" y="153.69458128078819"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="keyboardBackground">
+            <color red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="noteText">
+            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
