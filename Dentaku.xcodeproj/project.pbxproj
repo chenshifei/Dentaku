@@ -29,6 +29,7 @@
 		00D931332524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */; };
 		00D931382524CCDC00BF1F05 /* MapDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D931372524CCDC00BF1F05 /* MapDisplayViewController.swift */; };
 		00D9313D2524CCF600BF1F05 /* CurrencyDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9313C2524CCF600BF1F05 /* CurrencyDisplayViewController.swift */; };
+		00DE2CC825364B1700FC347E /* DisplayUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DE2CC725364B1700FC347E /* DisplayUnitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticDisplayViewController.swift; sourceTree = "<group>"; };
 		00D931372524CCDC00BF1F05 /* MapDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDisplayViewController.swift; sourceTree = "<group>"; };
 		00D9313C2524CCF600BF1F05 /* CurrencyDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDisplayViewController.swift; sourceTree = "<group>"; };
+		00DE2CC725364B1700FC347E /* DisplayUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUnitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				00D9312D2524CC7E00BF1F05 /* DisplayPageViewController.swift */,
+				00DE2CC725364B1700FC347E /* DisplayUnitViewController.swift */,
 				00D931322524CCAF00BF1F05 /* ArithmeticDisplayViewController.swift */,
 				00D931372524CCDC00BF1F05 /* MapDisplayViewController.swift */,
 				00D9313C2524CCF600BF1F05 /* CurrencyDisplayViewController.swift */,
@@ -388,6 +391,7 @@
 				002B2CEB252AB9AC00283759 /* Theme.swift in Sources */,
 				007DE0E82518D68C00B7D8EE /* SceneDelegate.swift in Sources */,
 				002B2CE5252AB90100283759 /* SettingsViewController.swift in Sources */,
+				00DE2CC825364B1700FC347E /* DisplayUnitViewController.swift in Sources */,
 				00C2DACD252B1CA20082B240 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
