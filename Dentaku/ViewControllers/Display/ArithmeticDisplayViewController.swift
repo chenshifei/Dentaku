@@ -59,13 +59,12 @@ extension ArithmeticDisplayViewController: DisplayUnit {
     }
     
     fileprivate func displayNumericResultOnScreen(_ result: ProcessorResult) {
-        if let error = result.1 {
+        switch result {
+        case .failure(let error):
             recordError(error)
             showError(.input)
-        } else if let number = result.0 {
+        case .success(let number):
             displayLabel.text = "\(number)"
-        } else {
-            showError(.input)
         }
     }
 }

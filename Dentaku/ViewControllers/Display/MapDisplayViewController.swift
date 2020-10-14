@@ -101,26 +101,28 @@ extension MapDisplayViewController: DisplayUnit {
     }
     
     func numericOutputDelivered(_ result: ProcessorResult) {
-        guard let number = result.0, result.1 == nil else {
+        switch result {
+        case .failure:
             showError(.input)
-            return
+        case .success(let number):
+            displayLabel.text = "\(number)"
         }
-        displayLabel.text = String(number)
     }
     
     func equationEvaluated(result: ProcessorResult) {
-        guard let number = result.0, result.1 == nil else {
+        switch result {
+        case .failure:
             showError(.input)
-            return
+        case .success(let number):
+            displayLabel.text = "\(number)"
+            
+            if inputedNumbers.count > 1 {
+                inputedNumbers.removeFirst()
+            }
+            inputedNumbers.append(number)
+            
+            displayInputNumbers()
         }
-        displayLabel.text = String(number)
-        
-        if inputedNumbers.count > 1 {
-            inputedNumbers.removeFirst()
-        }
-        inputedNumbers.append(number)
-        
-        displayInputNumbers()
     }
     
     func reset() {

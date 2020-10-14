@@ -102,21 +102,22 @@ extension CurrencyDisplayViewController: DisplayUnit {
     }
     
     func numericOutputDelivered(_ result: ProcessorResult) {
-        guard let number = result.0, result.1 == nil else {
-            self.showError(.input)
-            return
+        switch result {
+        case .failure:
+            showError(.input)
+        case .success(let number):
+            inputLabel.text = "\(number)"
         }
-        inputLabel.text = String(number)
     }
     
     func equationEvaluated(result: ProcessorResult) {
-        guard let number = result.0, result.1 == nil else {
-            self.showError(.input)
-            return
+        switch result {
+        case .failure:
+            showError(.input)
+        case .success(let number):
+            inputLabel.text = "\(number)"
+            outputLabel.text = "\(number * exchangeRate)"
         }
-        
-        inputLabel.text = String(number)
-        outputLabel.text = "\(number * exchangeRate)"
     }
     
     func reset() {
