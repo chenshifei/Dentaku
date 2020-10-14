@@ -3,19 +3,19 @@
     "pins": [
       {
         "package": "abseil",
-        "repositoryURL": "https://github.com/firebase/abseil-cpp.git",
+        "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "8ddf129163673642a339d7980327bcb2c117a28e",
+          "revision": "05d8107f2971a37e6c77245b7c4c6b0a7e97bc99",
           "version": null
         }
       },
       {
         "package": "BoringSSL-GRPC",
-        "repositoryURL": "https://github.com/firebase/boringssl.git",
+        "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "d3275d3c77a63746f869a092a1a2a014cf0e5b9a",
+          "revision": "7bcafa2660bc58715c39637494550d1ed7cd7229",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "git@github.com:chenshifei/DenCore.git",
         "state": {
           "branch": null,
-          "revision": "5a1398f61e00e9dbd01dc294cf7ab0214d4c0c1b",
-          "version": "0.6.0"
+          "revision": "15099a457c73e8d1a97bbb970bcd7123877d1009",
+          "version": "0.7.0"
         }
       },
       {
@@ -33,16 +33,16 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": "6.34-spm-beta",
-          "revision": "1a3a8f41a086b0217681c96b7049f0252b5969fc",
+          "revision": "70b54ba972e5768fe84f69f700ae362c8fbf8e8b",
           "version": null
         }
       },
       {
         "package": "gRPC",
-        "repositoryURL": "https://github.com/firebase/grpc.git",
+        "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
         "state": {
           "branch": null,
-          "revision": "b22bc5256665ff2f1763505631df0ee60378b083",
+          "revision": "5bb2669317ae2183f4cb00c675423af1924f0b46",
           "version": null
         }
       },
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
-          "revision": "c5cdb6bdc2d3db8ef81e3bc71d55d31baf638837",
-          "version": "1.2.10"
+          "revision": "d8accebc8fa32f57196df191e733f946e955c549",
+          "version": "1.2.11"
         }
       },
       {
